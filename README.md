@@ -1,39 +1,48 @@
-# gatsby-platform
+# Toposware docs platform
+
+This repository contains the documentation platform for [Toposware](toposware.com).
+
+The platform is deployed automatically to
+➡️ [https://docs.topos.technology](https://docs.topos.technology)
+
+This repository is currently maintained by [B9Lab](https://github.com/b9lab).
+
+## Contribute
+
+We welcome all contributions to this repository. If you see any error or would like to propose an idea, please feel free to open an Issue, or submit an update via a Pull Request.
 
 ## Install
-
-Install submodule (if you need to handle protected logic)
-```
-git submodule init
-git submodule update
-```
-With newer git versions, you can also use the following command instead
-```
-git clone git@git.b9lab.com:internal-projects/nextgen-documentation-platform/gatsby-platform.git --recurse-submodules
-```
+Install packages using
 
 ```
 npm install
 ```
+(or equivalent commands for your package manager)
 
+For local development, it is recommended to also install the gatsby-cli globally using:
 ```
 npm install -g gatsby-cli 
 ```
 
 ## Configuration
 
-See [config.ts](./config.ts)
+Next to the default `gatsby-config.ts` file, additional configuration options are exposed in `config.ts`.
 
-Remember to configure the platform to work with `gatsby-platform-module`, for more informations see [here](https://git.b9lab.com/internal-projects/nextgen-documentation-platform/gatsby-platform-module/tree/main/README.md)
 
-## Dev
+## Run local dev environment
 
+To run a local dev environment, start:
 ```
 npm run develop
 ```
 
+
 ## Build
+
+To build the distribution package, run:
 
 ```
 gatsby build
 ```
+
+This will generate the dist output in the `public` folder
