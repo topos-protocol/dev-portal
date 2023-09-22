@@ -1,0 +1,62 @@
+.md-container {
+  & > * + * {
+    @apply mt-[1.5em];
+  }
+
+  h2,
+  h3 {
+    @apply scroll-mt-24;
+  }
+
+  ul,
+  ol {
+    @apply ml-[1rem];
+
+    li:not(:first-of-type) {
+      @apply mt-[1em];
+    }
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ol ul,
+  ul ol,
+  ul ul,
+  ol ol {
+    @apply mt-[1em];
+  }
+
+  a:not(.discreet-link):not(.button) {
+    @apply font-semibold text-action-reg underline underline-offset-2;
+  }
+
+  blockquote {
+    @apply border-l-4 bg-secondary-bg p-4 text-sm;
+  }
+
+  .gatsby-resp-image-wrapper {
+    @apply my-[1.5em];
+  }
+
+  .highlightbox {
+    a:not(.discreet-button):not(button) {
+      @apply text-inherit;
+    }
+  }
+
+  .banner {
+    .gatsby-resp-image-wrapper {
+      @apply my-0;
+    }
+
+    .gatsby-resp-image-image {
+      @apply h-full w-full object-contain;
+    }
+  }
+}

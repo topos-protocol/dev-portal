@@ -1,0 +1,20 @@
+.image-carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slide {
+    @apply relative;
+  }
+
+  .slide-caption {
+    @apply absolute bottom-0 right-0 rounded-md bg-neutral-300/20 px-4 py-2 text-sm backdrop-blur-sm transition-all delay-200 lg:translate-y-5 lg:opacity-0;
+  }
+}
+
+.image-carousel-container:hover .slide-caption {
+  @apply lg:translate-y-0 lg:opacity-100;
+}

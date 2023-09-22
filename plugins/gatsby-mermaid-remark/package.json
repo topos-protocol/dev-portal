@@ -1,0 +1,11 @@
+{
+  "name": "gatsby-mermaid-remark",
+  "version": "1.0.0",
+  "description": "Add Mermaid graphs into gatsbyjs",
+  "main": "index.js",
+  "author": "B9Lab",
+  "license": "ISC",
+  "dependencies": {
+    "unist-util-visit": "^1.1.3"
+  }
+}

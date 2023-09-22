@@ -1,0 +1,11 @@
+.mermaid {
+  @apply mt-6 flex aspect-square justify-center bg-white opacity-0 transition-all;
+
+  &[data-processed='true'] {
+    @apply aspect-auto opacity-100;
+  }
+
+  svg {
+    @apply h-auto;
+  }
+}

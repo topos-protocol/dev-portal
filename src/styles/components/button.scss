@@ -1,0 +1,6 @@
+.button {
+  @apply inline-flex rounded-md bg-gradient-to-tr from-action-reg to-button-linear-end px-8
+    py-2 font-bold text-button-text transition-all
+    hover:from-button-hover hover:to-button-hover
+    active:from-button-active active:to-button-active;
+}

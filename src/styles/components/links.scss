@@ -1,0 +1,15 @@
+a[target='_blank'] {
+  @apply relative inline-flex;
+
+  .external {
+    @apply absolute -right-1.5 top-0 inline-flex h-2 w-2
+      -translate-y-0.5 items-center justify-center text-action-reg opacity-0 transition-all ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    .external {
+      @apply opacity-100;
+    }
+  }
+}

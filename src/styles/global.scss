@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './fonts';
+@import './prism/dracula';
+@import 'katex/dist/katex.min.css';
+@import './base';
+@import './md-container';
+@import './components/tables';
+@import './components/highlights';
+@import './components/button';
+@import './components/code-highlight';
+@import './components/links';
+@import './components/images';
+@import './components/image-carousel';
+@import './components/mermaid';
+@import './docsearch';

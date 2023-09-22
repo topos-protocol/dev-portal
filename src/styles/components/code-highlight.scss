@@ -1,0 +1,63 @@
+span:has(.gatsby-code-button-container),
+span:has(.gatsby-highlight),
+.code-component-container {
+  @apply relative block;
+}
+
+.gatsby-code-button-container {
+  @apply absolute right-0 top-auto z-10 rounded-t-xl px-4 py-1.5;
+}
+
+.gatsby-code-button {
+  @apply fill-neutral-50;
+
+  svg {
+    @apply h-4 w-4;
+  }
+}
+
+.gatsby-code-button[data-tooltip]::after {
+  content: 'Copy to clipboard';
+  @apply right-1.5 top-8 rounded-md bg-code-top/40 px-4 py-2 text-xs;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  text-shadow: none;
+}
+
+.gatsby-highlight {
+  @apply relative mt-0 pt-7;
+
+  &::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-7 rounded-t-lg bg-code-top;
+  }
+
+  pre[class*='language-'] {
+    @apply m-0 overflow-hidden rounded-none rounded-b-xl p-0;
+  }
+
+  code[class*='language-'] {
+    @apply block overflow-hidden overflow-x-scroll px-6 py-4;
+    &::-webkit-scrollbar {
+      @apply h-1.5;
+    }
+
+    &::-webkit-scrollbar-track {
+      @apply bg-code-bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply rounded-full bg-neutral-300;
+    }
+  }
+}
+
+.codeblock .gatsby-highlight pre[class*='language-'] {
+  @apply rounded-b-none;
+}
+
+:not(pre) > code[class*='language-'] {
+  @apply bg-neutral-500/10 px-1 text-black;
+}
