@@ -1,8 +1,9 @@
 # Toposware docs platform
 
-This repository contains the documentation platform for [Toposware](toposware.com).
+This repository contains the documentation platform for [Toposware](https://toposware.com).
 
 The platform is deployed automatically to
+
 ➡️ [https://docs.topos.technology](https://docs.topos.technology)
 
 This repository is currently maintained by [B9Lab](https://github.com/b9lab).
