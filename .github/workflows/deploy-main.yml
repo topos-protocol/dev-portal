@@ -27,5 +27,5 @@ jobs:
           aws-region: eu-west-1
       - name: 🚀 Deploy AWS S3
         run: |
-          aws s3 sync public ${{ AWS_S3_BUCKET_URL }}
-          aws cloudfront create-invalidation --distribution-id ${{ CF_DISTRIBUTION_ID }} --paths "/*"
+          aws s3 sync public ${{ vars.AWS_S3_BUCKET_URL }}
+          aws cloudfront create-invalidation --distribution-id ${{ vars.CF_DISTRIBUTION_ID }} --paths "/*"
