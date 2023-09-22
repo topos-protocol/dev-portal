@@ -1,0 +1,29 @@
+.highlightbox {
+  * {
+    @apply text-inherit;
+  }
+
+  &.info {
+    @apply bg-highlight-bg text-highlight-fg;
+
+    .icon {
+      @apply fill-highlight-fg;
+    }
+  }
+
+  &.alert {
+    @apply bg-alert-bg text-alert-fg;
+
+    .icon {
+      @apply fill-alert-fg;
+    }
+  }
+
+  &.tip {
+    @apply bg-tip-bg text-tip-fg;
+
+    .icon {
+      @apply fill-tip-fg;
+    }
+  }
+}

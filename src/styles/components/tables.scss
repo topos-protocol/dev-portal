@@ -1,0 +1,51 @@
+table {
+  @apply w-full table-auto border-separate border-spacing-0 text-left text-sm;
+
+  th,
+  td {
+    @apply border-l px-4 py-3;
+  }
+
+  thead th {
+    @apply border-t bg-secondary-bg;
+
+    &:first-child {
+      @apply rounded-tl-md;
+    }
+
+    &:last-child {
+      @apply rounded-tr-md border-r;
+    }
+  }
+
+  tbody tr {
+    td,
+    th {
+      @apply border-b;
+
+      &:last-child {
+        @apply border-r;
+      }
+    }
+
+    &:first-child {
+      th,
+      td {
+        @apply border-t;
+      }
+    }
+
+    &:last-child {
+      td,
+      th {
+        &:first-child {
+          @apply rounded-bl-md;
+        }
+
+        &:last-child {
+          @apply rounded-br-md;
+        }
+      }
+    }
+  }
+}
