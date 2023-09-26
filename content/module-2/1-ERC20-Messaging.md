@@ -88,7 +88,9 @@ Register a token, here named `testToken`:
 
 In order to register tokens on the subnets, you will need to pay fees on both subnets. Use the [Topos Faucet](https://faucet.testnet-1.topos.technology):
 
+<ZoomImage small>
 ![Get some TOPOS and INCAL](./images/faucetindex.png)
+</ZoomImage>
 
 Make sure that the tokens are sent:
 
@@ -96,7 +98,9 @@ Make sure that the tokens are sent:
 
 Now you can pay the necessary fee for a token registration (e.g., for the Incal subnet):
 
+<ZoomImage small>
 ![Pay INCA fee](./images/incafee.png)
+</ZoomImage>
 
 </HighlightBox>
 
@@ -118,11 +122,15 @@ With both token setups done, you can try your first cross-subnet token transfer:
 
 The ERC20 Messaging dApp will list the different steps involved in the cross-subnet transfer process:
 
+<ZoomImage small>
 ![Transaction page](./images/transactionrunning.png)
+</ZoomImage>
 
 First, approve the actions:
 
+<ZoomImage small>
 ![approve transaction](./images/approvetransaction.png)
+</ZoomImage>
 
 <HighlightBox type="info" title="Note">
 
@@ -134,11 +142,15 @@ A cross-subnet ERC20 token transfer involves you approving several actions:
 
 The ERC20 Messaging dApp will wait for the transaction to be executed:
 
+<ZoomImage small>
 ![Wait for the transaction](./images/waittransaction.png)
+</ZoomImage>
 
 It should give you a success message, like the following:
 
+<ZoomImage small>
 ![Successful page](./images/successedenaincal.png)
+</ZoomImage>
 
 </StepItem>
 </Steps>
