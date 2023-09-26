@@ -16,7 +16,7 @@
 }
 
 :not(.banner) .zoom-image-small .gatsby-resp-image-wrapper {
-  @apply md:max-h-[45vh];
+  @apply md:max-h-[45vh] #{!important};
 
   .gatsby-resp-image-image {
     @apply md:max-h-[45h] #{!important};

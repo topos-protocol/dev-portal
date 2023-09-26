@@ -45,7 +45,7 @@ export const HighlightBox: React.FC<HighlightBoxProps> = ({
           {Icon}
         </span>
       )}
-      <div className="[&>*+*]:mt-[0.5rem]">
+      <div className="flex-1 [&>*+*]:mt-[0.5rem]">
         {title && <div className="text-base font-bold">{title}</div>}
         {children}
       </div>
