@@ -32,9 +32,9 @@ export const Accordion: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <AccordionContext.Provider value={contextValue}>
       <div className="md-container" ref={ref}>
-        {React.Children.map(children, (child, index) => {
+        {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
-            return React.cloneElement(child, { ...{ index } });
+            return React.cloneElement(child);
           }
           return child;
         })}
@@ -45,17 +45,15 @@ export const Accordion: React.FC<PropsWithChildren> = ({ children }) => {
 
 interface AccordionItemProps {
   title: string | null;
-  index: number;
   children: ReactNode;
 }
 
 export const AccordionItem: React.FC<AccordionItemProps> = ({
   title,
-  index,
   children,
 }) => {
   const { active, setActive } = React.useContext(AccordionContext);
-  const itemId = `${title?.replace(' ', '_')}_${index}`;
+  const itemId = React.useId();
   const hidden: boolean = itemId !== active;
 
   return (
