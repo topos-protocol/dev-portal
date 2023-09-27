@@ -15,11 +15,8 @@ export const Accordion: React.FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (!active || !ref.current) return;
-    const tabs: NodeListOf<HTMLDivElement> = ref.current.querySelectorAll(
-      '[data-rel="AccordionContent"]'
-    );
-    const tab: HTMLDivElement | undefined = Array.from(tabs).find(
-      (tab: HTMLDivElement) => tab.dataset.index === active
+    const tab: HTMLDivElement | null = ref.current.querySelector(
+      `[data-rel="AccordionContent"][data-index="${active}"]`
     );
     if (!tab || window.scrollY < tab.offsetTop) return;
     window.scrollTo({
