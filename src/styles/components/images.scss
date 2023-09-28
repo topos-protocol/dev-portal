@@ -4,7 +4,7 @@
 }
 
 :not(.banner) .gatsby-resp-image-wrapper {
-  @apply m-6 max-h-[90vh] overflow-hidden lg:m-12 #{!important};
+  @apply my-6 max-h-[90vh] overflow-hidden lg:my-12 #{!important};
 
   .gatsby-resp-image-background-image {
     @apply opacity-0 #{!important};
