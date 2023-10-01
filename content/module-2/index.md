@@ -42,8 +42,8 @@ The second chapter of the Topos Developer Portal brings you into contact with th
     </Card>
   </GridItem>
   <GridItem>
-    <Card title="5: Topos Testnet" to={'/content/module-2/5-testnet.html'}>
-      The Topos public testnet is there for our developer community to deploy apps and experiment with the novel interaction model the Topos protocol enables. In this section we present the facilities available to you and provide a few pointers on how to deploy your own work.
+    <Card title="5: Topos Testnet phases" to={'/content/module-2/5-testnet.html'}>
+      The Topos public testnet is there for our developer community to deploy apps and experiment with the novel interaction model the Topos protocol enables. It's an early preview of what is coming. In this section we present the upcoming phases to give interested parties and overview of the remaining phases.
     </Card>
   </GridItem>
 </Grid>
