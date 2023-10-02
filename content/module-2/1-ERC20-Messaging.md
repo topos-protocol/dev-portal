@@ -5,7 +5,7 @@ description: Test cross-subnet ERC-20 token transfer
 
 # ERC20 Messaging dApp
 
-It is time to take your first steps with the Topos Testnet and get familiar with the mechanics of using and developing with Topos. To do so, you will use a basic dApp provided by Topos: the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**. It is a sample application that allows you to experience Topos as a user transfering funds from one soverign blockchain to another. Later, you can find out more about the actions that are triggered and executed on the public testnet during your test.
+It is time to take your first steps with the Topos Testnet and get familiar with the mechanics of using and developing with Topos. To do so, you will use a basic dApp provided by Topos: the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**. It is a sample application that allows you to experience Topos as a user transfering funds from one blockchain to another. Later, you can find out more about the actions that are triggered and executed on the public testnet during your test.
 
 ## Visit the ERC20 Messaging dApp
 
