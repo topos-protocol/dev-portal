@@ -26,7 +26,7 @@ Phase 2 is where we onboard the community and enable a wider involvment of partn
 
 ## Phase 3: Ecosystem
 
-Phase 3 solidifies the community involvment into an actual ecosystem of projects, including the complete staking system (delegation, rewards, token issuance mechanics etc) and on-chain governance, allowing for permissionless subnet registration and collective decision making. In this phase we expect do deliver the full suite of required tooling (explorer, exchange integrationtools, "stdlib" for Smart Contract developers etc).
+Phase 3 solidifies the community involvment into an actual ecosystem of projects, including the complete staking system (delegation, rewards, token issuance mechanics, etc.) and on-chain governance, allowing for permissionless subnet registration and collective decision making. In this phase we expect do deliver the full suite of required tooling (explorer, exchange integration tools, "stdlib" for Smart Contract developers, etc.).
 
 ## Phase 4: Advanced features
 Phase 4 is where it all comes together and the full power of ZK cryptography is made available.
