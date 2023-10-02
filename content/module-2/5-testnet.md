@@ -12,7 +12,7 @@ The Topos protocol is undergoing heavy development and features will be rolled o
 
 ## Phase 1: Core Infrastructure
 
-This is where we are today. Phase 1 provides the basic building blocks and connects them all together, providing the foundation for further work and refinement. Not all components are fully functional (e.g. no ZK proofs, deterministic broadcasts rather than trhe more performant probabilistic flavour described in the whitepaper), but all of the main interfaces are there and operational, ready for developers and early adopters.
+This is where we are today. Phase 1 provides the basic building blocks and connects them all together, providing the foundation for further work and refinement. Not all components are fully functional (e.g. no ZK proofs, deterministic broadcasts rather than the more performant probabilistic flavour described in the whitepaper), but all of the main interfaces are there and operational, ready for developers and early adopters.
 
 Included in Phase 1:
 
