@@ -163,7 +163,7 @@ This section will look at each of them.
 
 The Playground first [bootstraps a TCE node](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/c44ee1d46018eaab1e78e092393b3c75aa2ab82d/tce.yml#L11), and then runs  [four additional TCE nodes](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/c44ee1d46018eaab1e78e092393b3c75aa2ab82d/tce.yml#L59) alongside it. All five TCE nodes will broadcast certificates – the first one generates keys for testing purposes. These TCE nodes are spawned with the help of the **Topos CLI**, which you will learn about and experiment with in the next section.
 
-{/* update after TCE is useing ICE-FROST */}
+{/* update after TCE is using ICE-FROST */}
 
 ## The Topos Subnet
 
