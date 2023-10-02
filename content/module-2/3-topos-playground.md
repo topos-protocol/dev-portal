@@ -175,7 +175,7 @@ The Playground first [bootstraps a TCE node](https://github.com/topos-protocol/l
 
 ## The Incal Subnet
 
-Because the **Topos Playground** is just a basic tool for demonstration and local testing, the network topology of the subnets it creates is similar. [Incal](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/subnet-incal.yml) consists of four node containers and one sequencer container. In addition, one container creates the keys and the genesis block. When the TCE network is up, the sequencer subscribes to it to receive relevant certificates and to broadcast own certificates to it.
+Because the **Topos Playground** is just a basic tool for demonstration and local testing, the network topology of the subnets it creates is similar. [Incal](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/subnet-incal.yml) consists of four node containers and one sequencer container. In addition, one container creates the keys and the genesis block. When the TCE network is up, the sequencer subscribes to it to receive relevant certificates and to broadcast its own certificates to it.
 
 After the subnet is ready, the [Playground starts a container](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/contracts.yml) for the contracts:
 
