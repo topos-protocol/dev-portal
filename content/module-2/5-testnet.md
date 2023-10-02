@@ -5,7 +5,7 @@ description: The Topos testnet, overview and how-to
 
 # Topos Testnet
 
-The Topos testnet is comprised of two subnets, Incal and Topos Subnet, along with a sequencer and an instance of the Executor Service. It provides all the infrastructure needed to deploy Smart Contracts to Incal and interact across subnets. The architecture of the testnet is identical to what you saw in the [Topos Playground Overview](./1-ERC20-Messaging.html).
+The Topos testnet currently features two subnets, Incal and Topos Subnet, along with a sequencer and an instance of the Executor Service (as we progress through subsequent phases of the testnet, more subnets will be permissionlessly added). It provides all the infrastructure needed to deploy Smart Contracts to Incal and interact across subnets. The architecture of the testnet is identical to what you saw in the [Topos Playground Overview](./1-ERC20-Messaging.html).
 As mentioned [previously](./2-explorer.md), the Topos testnet explorer is available at [https://explorer.testnet-1.topos.technology](https://explorer.testnet-1.topos.technology).
 
 The Topos protocol is undergoing heavy development and features will be rolled out incrementally over time until mainnet is launched in 2024. The phases outlined below will change as detailed planning progresses.
