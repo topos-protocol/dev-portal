@@ -7,7 +7,7 @@ description: Inspect your local network
 
 You have tried the **ERC20 Messaging dApp** to see Topos in action and have executed a cross-subnet token transfer. You were presented with a very high-level view of what happened, just like what a user would see.
 
-You can now use the **[Topos Explorer](https://explorer.testnet-1.topos.technology)** to see more details. Because Topos subnets are EVM-based, an explorer for Topos can use the standard Ethereum [JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/). In addition, the Transmission Control Engine (TCE) will expose a [GraphQL](https://en.wikipedia.org/wiki/GraphQL) endpoint.
+You can now use the **[Topos Explorer](https://explorer.testnet-1.topos.technology)** to see more details. Because Topos subnets are EVM-based, an explorer for Topos can use the standard Ethereum [JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/). In addition, the Transmission Control Engine (TCE) will expose a [GraphQL](https://en.wikipedia.org/wiki/GraphQL) endpoint available ([here](https://graphql.topos-subnet.testnet-1.topos.technology/)).
 
 {/* include more information about the TCE API if available */}
 
