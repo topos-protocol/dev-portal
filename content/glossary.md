@@ -98,6 +98,9 @@ A protocol in distributed systems designed to handle nodes that behave unpredict
 ### Blockchain
 A distributed ledger that records totally ordered transactions, linking the records together via cryptographic hashes. Each block contains the transaction data, a timestamp, and a cryptographic hash of the previous block. The inclusion of the hash of the previous block forms a continuous chain, since the data stored in any given block is affected by the data that came before it. Functionally, this makes each block in a blockchain immutable once written, since a block can not be altered without also altering all subsequent blocks.
 
+### Bridge
+A bridge is a protocol or a set of smart contracts that enable the transfer of assets, data, or functionality between different blockchain networks, fostering interoperability and allowing users to interact with multiple blockchain ecosystems.
+
 ### Certificate
 A data structure created by the Sequencer of subnets, including the Topos Subnet, that certifies subnet state transitions. The certificate encapsulates:
 
@@ -235,6 +238,9 @@ A modern form of [asymmetric cryptography](./glossary.html#asymmetric-key-crypto
 
 ### Epoch
 In Topos, an epoch refers to a continuous sequence of $r$ blocks, denoted as $Ep = {bl_1, bl_2, ... , bl_r}$. The specific number $r$ is a system parameter. Typically, an epoch corresponds to approximately 24 hours.
+
+### Equivocation
+This refers to a type of misbehavior where a participant in the system sends conflicting or contradictory information. Such behavior can disrupt consensus mechanisms, leading to potential double spends or system errors.
 
 ### Event
 An "event" represents a specific action in a process.
@@ -414,7 +420,7 @@ See discussion, and the original definition, based on the NIST definition of *bl
 </Accordion>
 
 ### Linearization
-Ensures that operations in a concurrent system appear as if they were executed sequentially, even if they occur simultaneously. It provides an illusion that every operation acts instantaneously between its start and finish, allowing concurrent object operations to be described by pre and post conditions. A system is linearizable when each of its individual objects is linearizable, distinguishing it from properties like sequential consistency. The concept is fundamental to the "C" (consistency) in the CAP Theorem. For a given operation, the linearization point, or the moment it seems to occur atomically, is its critical section. Contrastingly, [Serializability](./glossary.html#serializability)* concerns transactions involving multiple operations over various objects, ensuring they align with a particular serial order.
+Ensures that operations in a concurrent system appear as if they were executed sequentially, even if they occur simultaneously. It provides an illusion that every operation acts atomically between its start and finish, allowing concurrent object operations to be described by pre and post conditions. A system is linearizable when each of its individual objects is linearizable, distinguishing it from properties like sequential consistency. The concept is fundamental to the "C" (consistency) in the CAP Theorem. For a given operation, the linearization point, or the moment it seems to occur atomically, is its critical section. Contrastingly, [Serializability](./glossary.html#serializability)&ast; concerns transactions involving multiple operations over various objects, ensuring they align with a particular serial order.
 
 <Accordion>
 <AccordionItem title="Additional Information">
@@ -461,6 +467,9 @@ Pertains to the rules and guarantees about how messages are delivered among diff
 * *Reliable Delivery*: This guarantees that if a message $m$ is successfully delivered to one correct process, it will eventually be delivered by all other correct processes.
 * *Total Order Delivery*: This ensures a consistent global order in which messages are delivered. If one correct process delivers message $a$ before message $b$, then all correct processes will deliver $a$ before $b$. That is, there's a universally agreed order: either $a$ comes before $b$ or $b$ comes before $a$.
 * *Causal Order Delivery*: The order preserves the sequence of messages based on their cause-and-effect relationship. If a message "$a$" is delivered before message "$b$" is sent, then "$a$" will always precede "$b$". Likewise, if a sender sends message "$b$" before dispatching message "$c$", "$c$" will always come after "$b$".
+
+### Oracle
+An oracle is a component that facilitates communication between blockchain networks and external data sources. It provides smart contracts with access to real-world information, events, or conditions that are outside the native blockchain, enabling enabling the chain to execute decisions based on external data. Oracles are crucial for enhancing the functionality and applicability of smart contracts across multiple real-world use cases.
 
 ### plonky2
 The proving/verifying backend for the zk-EVM STARK proof, in Rust.
