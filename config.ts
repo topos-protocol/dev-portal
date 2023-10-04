@@ -76,6 +76,10 @@ const config: Config = {
         {
           label: 'Topos CLI',
           path: '/content/module-2/4-cli.html'
+        },
+        {
+          label: 'Topos Testnet',
+          path: '/content/module-2/5-testnet.html'
         }
       ]
     },

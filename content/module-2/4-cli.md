@@ -11,7 +11,7 @@ The Topos CLI has already been mentioned many times in this chapter. Now it is t
 
 ## Install from the source
 
-You will fetch and build the [Topos CLI](https://github.com/topos-protocol/topos) from the source. This may take some time; alternatively, you can [download and run a released version directly](https://github.com/topos-protocol/topos/releases/). This section assumes that you work with [version 0.0.3](https://github.com/topos-protocol/topos/releases/tag/v0.0.3).
+You will fetch and build the [Topos CLI](https://github.com/topos-protocol/topos) from the source. This may take some time; alternatively, you can [download and run a released version directly](https://github.com/topos-protocol/topos/releases/). This section assumes that you work with [version 0.0.5](https://github.com/topos-protocol/topos/releases/tag/v0.0.5).
 
 <HighlightBox type="info" title="Make sure to install Rust Toolchain">
 
@@ -25,7 +25,7 @@ When you are ready, use `cargo` to fetch and compile the CLI:
 <TabGroupItem title="Local" active>
 
 ```sh
-$ cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.3
+$ cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.5
 ```
 
 </TabGroupItem>
@@ -38,7 +38,7 @@ FROM rust:1.72.0-bullseye
 
 RUN apt-get update
 RUN apt-get install --yes protobuf-compiler llvm-dev libclang-dev clang
-RUN cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.3
+RUN cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.5
 
 ENTRYPOINT [ "topos" ]
 ```
@@ -46,7 +46,7 @@ ENTRYPOINT [ "topos" ]
 Then create the image:
 
 ```sh
-$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.3
+$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.5
 ```
 
 </TabGroupItem>
@@ -67,7 +67,7 @@ $ topos --help
 <TabGroupItem title="Docker">
 
 ```sh
-$ docker run --rm topos-cli:v0.0.3 --help
+$ docker run --rm topos-cli:v0.0.5 --help
 ```
 
 </TabGroupItem>
@@ -87,7 +87,7 @@ Commands:
   setup      Topos CLI subcommand for the setup of various Topos-related components (e.g., installation of Polygon Edge binary)
   subnet     Topos CLI subcommand for the Polygon Edge-related functionalities
   node       Utility to manage your nodes in the Topos network
-  doctor     
+  doctor
   help       Print this message or the help of the given subcommand(s)
 
 Options:
@@ -127,7 +127,7 @@ Add to your `topos-cli.dockerfile`:
 After that, you need to rebuild the image. This should be fast, as it only runs these additional steps:
 
 ```sh
-$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.3
+$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.5
 ```
 
 </TabGroupItem>
@@ -147,7 +147,7 @@ $ topos setup subnet --help
 
 ```sh
 $ docker run --rm \
-    topos-cli:v0.0.3 setup subnet --help
+    topos-cli:v0.0.5 setup subnet --help
 ```
 
 </TabGroupItem>
@@ -180,7 +180,7 @@ $ topos node init --name val-alice
 ```sh
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
-    topos-cli:v0.0.3 node init --name val-alice
+    topos-cli:v0.0.5 node init --name val-alice
 ```
 
 </TabGroupItem>
@@ -256,7 +256,7 @@ $ topos node init --name seq-bob --role sequencer
 ```sh
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
-    topos-cli:v0.0.3 node init --name seq-bob --role sequencer
+    topos-cli:v0.0.5 node init --name seq-bob --role sequencer
 ```
 
 </TabGroupItem>
@@ -287,7 +287,7 @@ $ wget -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/1
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
     --entrypoint wget \
-    topos-cli:v0.0.3 -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/19dbc24e9b2405e7562f63d4032450e6/raw/12499fdc40980209c7acd2146ee84c779dbe9e4d/genesis.json
+    topos-cli:v0.0.5 -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/19dbc24e9b2405e7562f63d4032450e6/raw/12499fdc40980209c7acd2146ee84c779dbe9e4d/genesis.json
 ```
 
 </TabGroupItem>
@@ -325,7 +325,7 @@ $ topos node up --name val-alice
 $ docker run --rm -it \
     -v $(pwd)/.config:/root/.config \
     --network net-topos-subnet \
-    topos-cli:v0.0.3 node up --name val-alice
+    topos-cli:v0.0.5 node up --name val-alice
 ```
 
 Do not forget to launch it inside the `net-topos-subnet` network. Be sure to use `-it` so that you can interrupt it with <kbd>CTRL-C</kbd>.
@@ -349,7 +349,7 @@ $ topos node up --name seq-bob
 $ docker run --rm -it \
     -v $(pwd)/.config:/root/.config \
     --network net-topos-subnet \
-    topos-cli:v0.0.3 node up --name seq-bob
+    topos-cli:v0.0.53 node up --name seq-bob
 ```
 
 As before, do not forget to launch it inside the `net-topos-subnet` network so that it can contact `val-alice`.

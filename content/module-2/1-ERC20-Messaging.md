@@ -5,7 +5,7 @@ description: Test cross-subnet ERC-20 token transfer
 
 # ERC20 Messaging dApp
 
-It is time to make your first steps with the Topos `Testnet` and get familiar with it. To do so, you will use a basic dApp provided by Topos: the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**. It is a sample application that allows you to experience Topos as a user. Later, you can find out more about the actions that are triggered and executed on the `Testnet` during your test.
+It is time to take your first steps with the Topos Testnet and get familiar with the mechanics of using and developing with Topos. To do so, you will use a basic dApp provided by Topos: the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**. It is a sample application that allows you to experience Topos as a user transfering funds from one blockchain to another. Later, you can find out more about the actions that are triggered and executed on the public testnet during your test.
 
 ## Visit the ERC20 Messaging dApp
 
@@ -17,17 +17,17 @@ Please make sure you have installed [MetaMask](https://metamask.io/download/) be
 
 With MetaMask installed, you can navigate to [ERC20 Messaging](https://dapp-frontend-erc20.testnet-1.topos.technology/):
 
-![dApp first page](./images/erc20index.png) 
+![dApp first page](./images/erc20index.png)
 
 You are now going to complete a cross-subnet, fungible token transfer from the Topos Subnet to the Incal subnet.
 
 <Steps>
 <StepItem>
 
-First, you must connect MetaMask with the **ERC20 Messaging dApp**:
+First, you must connect MetaMask with the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**:
 
 <ZoomImage small>
-![dApp connect with MetaMask 1](./images/erc20connect.png) 
+![dApp connect with MetaMask 1](./images/erc20connect.png)
 </ZoomImage>
 
 <ZoomImage small>
@@ -54,7 +54,7 @@ Add Incal too:
 ![dApp adds network Incal](./images/erc20incalnetwork.png)
 </ZoomImage>
 
-If the network is already added to MetaMask, it will just ask for permission to switch the network if you pick up a subnet. For example, for Topos:
+If the network is already added to MetaMask, it will just ask for permission to switch the network. For example, for Topos:
 
 <ZoomImage small>
 ![Switch network to Topos](./images/erc20switchnetworktopos.png)
@@ -86,7 +86,7 @@ Register a token, here named `testToken`:
 
 <HighlightBox type="warning" title="Faucet">
 
-In order to register tokens on the subnets, you will need to pay fees on both subnets. Use the [Topos Faucet](https://faucet.testnet-1.topos.technology):
+In order to register tokens on the subnets, you will need to pay fees on both subnets. Use the [Topos Faucet](https://faucet.testnet-1.topos.technology) to get some:
 
 <ZoomImage small>
 ![Get some TOPOS and INCAL](./images/faucetindex.png)
@@ -96,7 +96,7 @@ Make sure that the tokens are sent:
 
 ![Tokens sent](./images/faucetsuc.png)
 
-Now you can pay the necessary fee for a token registration (e.g., for the Incal subnet):
+Now you can pay the necessary fee for a token registration (e.g. for the Incal subnet):
 
 <ZoomImage small>
 ![Pay INCA fee](./images/incafee.png)
@@ -162,17 +162,17 @@ It should give you a success message, like the following:
 <Accordion title="Troubleshooting">
 <AccordionItem title="Clear MetaMask's activity data">
 
-MetaMask remembers the [nonce](https://ethereum.org/en/developers/docs/transactions/) it used for your last transaction. This is an issue if you `clean` and re-`start` your playground, as transaction nonces have to start from `0` on a new network. Follow [this guideline](https://support.metamask.io/hc/en-us/articles/360015488891-How-to-clear-your-account-activity-reset-account).
+MetaMask remembers the [nonce](https://ethereum.org/en/developers/docs/transactions/) it used for your last transaction. This is an issue if you `clean` and re-`start` your playground or if the testnet is reset, as transaction nonces have to start from `0` on a new network. Follow [this guideline](https://support.metamask.io/hc/en-us/articles/360015488891-How-to-clear-your-account-activity-reset-account) to reset the nonce.
 
 </AccordionItem>
 <AccordionItem title="Disconnect your MetaMask account">
 
-You can never be too sure that you cleaned your setup enough, so if in doubt you can disconnect your MetaMask account from the frontend. For information on this, follow [this guideline](https://support.metamask.io/hc/en-us/articles/360059535551-Disconnect-wallet-from-a-dapp).
+If you need to deep-clean your setup enough, you can disconnect your MetaMask account from the frontend. For information on how to do this this, follow [this guideline](https://support.metamask.io/hc/en-us/articles/360059535551-Disconnect-wallet-from-a-dapp).
 
 </AccordionItem>
 <AccordionItem title="Delete the networks from MetaMask">
 
-Networks may change between Playground versions, while MetaMask may believe that it has the correct information based solely on an ID. To remove the Topos and Incal networks from MetaMask, follow [this guideline](https://support.metamask.io/hc/en-us/articles/4502810252059-How-to-remove-networks).
+Networks may change between Playground versions or when the testnet is reset; MetaMask only has a network ID that typically never changes. To remove the Topos and Incal networks from MetaMask, follow [this guideline](https://support.metamask.io/hc/en-us/articles/4502810252059-How-to-remove-networks).
 
 </AccordionItem>
 </Accordion>
@@ -184,10 +184,13 @@ Networks may change between Playground versions, while MetaMask may believe that
 The following steps describe what actually happened:
 
 1. The ERC20 Messaging frontend deployed a token contract on each subnet for the token you registered on it.
-2. It submitted a transaction to the Incal subnet in order to burn the transferred tokens on the Incal subnet.
-3. It made a request on the [executor service](https://github.com/topos-protocol/executor-service). It submitted the Merkle proof of the transaction (proof of inclusion of its receipt in the receipt trie of the certified state transition) and the root of the transaction trie to the executor service, which is used by the **ERC20Messaging** contract to retrieve the certificate from the **ToposCore** contract.
-4. This certificate was emitted and then stored on-chain by the Topos Subnet.
-5. The Topos Subnet minted your transferred tokens.
+1. To make a cross-subnet transfer, the dApp submitted a transaction to the Incal subnet to burn the transferred tokens there.
+1. Next, the sending subnet (Incal) prepares the input data for the ZK proof and submits it to the prover cluster by way of the Sequencer
+1. The sequencer prepares the Certificate, containing the ZK proof and a few other pieces of data and broadcasts it to the TCE network.
+1. In parallel, the ERC20 frontend made a request to the [executor service](https://github.com/topos-protocol/executor-service) containing a Merkle proof of the Incal transaction (proof of inclusion of its receipt in the receipt trie of the certified state transition) and the root of the transaction trie, which is used by the **ERC20Messaging** contract to retrieve the certificate from the **ToposCore** contract.
+1. Once the receiving side (the Topos Subnet in this case) has taken delivery of the Certificate from its dedicated TCE node and the context-specific information from the executor service, it can proceed to mint the transferred tokens.
+
+**Note**: In the current iteration of the testnet, no ZK proofs are actually computed and TCE nodes are implemented as part of the Topos Subnet validators.
 
 # Up next
 

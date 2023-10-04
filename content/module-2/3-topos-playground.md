@@ -5,7 +5,7 @@ description: Install and test cross-subnet ERC-20 locally
 
 # Topos Playground
 
-The [Topos Playground](https://github.com/topos-protocol/topos-playground) installs and launches all the elements that compose a local test network. The first part of this section is optional and will let you test locally what you already experienced on `Testnet`.
+The [Topos Playground](https://github.com/topos-protocol/topos-playground) installs and launches all the elements that compose a local test network. The first part of this section is optional and will let you test locally what you already experienced on the `Testnet`.
 
 ## Component overview
 
@@ -16,7 +16,7 @@ Before you dive in, take a moment to understand the Playground at a high level. 
   * The [Incal Subnet](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/v0.1.6/subnet-incal.yml), a standard subnet, which will demonstrate the execution of cross-subnet messages.
 * A [TCE network](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/v0.1.6/tce.yml), which will consist of five TCE nodes in order to achieve a [reliable broadcast](../module-1/4-protocol.html#transmission-control-engine-tce-) of the certificates.
 * A [dApp](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4), to interact with the deployed network and trigger cross-subnet messages.
-* An [executor service](https://github.com/topos-protocol/executor-service/tree/v0.2.0), which is an example implementation to execute cross-subnet messages on the receiving subnet.
+* An [executor service](https://github.com/topos-protocol/executor-service/tree/v0.2.0), which is an example implementation to execute cross-subnet calls on the receiving subnet.
 
 <HighlightBox type="info" title="Remember">
 
@@ -146,7 +146,7 @@ If everything works correctly, you should see:
 </StepItem>
 </Steps>
 
-With everything running, you can start interacting with the frontend. You should be familiar with the frontend from the [previous section](./1-ERC20-Messaging.html). In addition, you can use the **Topos Explorer** to observe your local network. Just use [your local endpoints instead of the `Testnet`](./2-explorer.html). 
+With everything running, you can start interacting with the frontend. You should be familiar with the frontend from the [previous section](./1-ERC20-Messaging.html). In addition, you can use the **Topos Explorer** to observe your local network. Just use [your local endpoints instead of the `Testnet`](./2-explorer.html).
 
 ## Components in-depth
 
@@ -163,36 +163,36 @@ This section will look at each of them.
 
 The Playground first [bootstraps a TCE node](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/c44ee1d46018eaab1e78e092393b3c75aa2ab82d/tce.yml#L11), and then runs  [four additional TCE nodes](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/c44ee1d46018eaab1e78e092393b3c75aa2ab82d/tce.yml#L59) alongside it. All five TCE nodes will broadcast certificates – the first one generates keys for testing purposes. These TCE nodes are spawned with the help of the **Topos CLI**, which you will learn about and experiment with in the next section.
 
-{/* update after TCE is able to use ICE-FROST and if the Topos playground includes it */}
+{/* update after TCE is using ICE-FROST */}
 
 ## The Topos Subnet
 
 [You have already learned](../module-1/4-protocol.html#subnets) that the **Topos Subnet** is a special element of the zkEcosystem. The [underlying Docker Compose file](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/subnet-topos.yml) for it includes:
 
 * One container which generates the keys and subnet genesis block, and also sets the consensus to [Istanbul Byzantine Fault Tolerant (IBFT)](https://docs.kaleido.io/kaleido-platform/protocol/polygon) during initialization. This is done with the help of [Polygon Edge](https://www.kaleido.io/polygon-edge).
-* Four Polygon Edge node containers, of which the first one exposes the JSON-RPC API.
-* One sequencer container, which communicates with the _TCE network_. The sequencer container utilizes the [Topos CLI](https://github.com/topos-protocol/topos) in order to [set up a sequencer node](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/45450c2376a3aa28a2eed7119b59c29f7625b545/subnet-topos.yml#L147).
+* Four Polygon Edge node containers, of which the first exposes the JSON-RPC API.
+* A sequencer container, which communicates with the TCE network. The sequencer container utilizes the [Topos CLI](https://github.com/topos-protocol/topos) in order to [start a sequencer node](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/45450c2376a3aa28a2eed7119b59c29f7625b545/subnet-topos.yml#L147).
 
 ## The Incal Subnet
 
-Because the **Topos Playground** is just a basic tool for demonstration and local testing, the network topology of the subnets it creates is similar. [Incal](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/subnet-incal.yml) consists of four node containers and one sequencer container. In addition, one container creates the keys and the genesis block. If the TCE network is up, the sequencer subscribes to it for the relevant certificates and sends certificates to it.
+Because the **Topos Playground** is just a basic tool for demonstration and local testing, the network topology of the subnets it creates is similar. [Incal](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/subnet-incal.yml) consists of four node containers and one sequencer container. In addition, one container creates the keys and the genesis block. When the TCE network is up, the sequencer subscribes to it to receive relevant certificates and to broadcast its own certificates to it.
 
-After the subnet is started and is ready, the [Playground starts a container](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/contracts.yml) for the contracts:
+After the subnet is ready, the [Playground starts a container](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/main/contracts.yml) for the contracts:
 
 * One container to prepare necessary artifacts in order to deploy the contracts.
 * One container for the Incal subnet to deploy its [intended contracts](https://github.com/topos-protocol/topos-smart-contracts/tree/main/scripts).
 
-This container also includes some [scripts](https://github.com/topos-protocol/topos-smart-contracts/tree/main/scripts) – for example, for contract deployments and subnet registrations. So, by default, [the Incal subnet is registered](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/45450c2376a3aa28a2eed7119b59c29f7625b545/contracts.yml#L34) on the Topos Subnet. The contract container is meant to run once and exit after the deployment.
+This container also includes some [scripts](https://github.com/topos-protocol/topos-smart-contracts/tree/main/scripts) – for example, for contract deployments and subnet registrations. So, by default, [the Incal subnet is registered](https://github.com/topos-protocol/local-erc20-messaging-infra/blob/45450c2376a3aa28a2eed7119b59c29f7625b545/contracts.yml#L34) on the Topos Subnet. The contract container runs once and exit after the deployment.
 
 ## The ERC20 Messaging frontend
 
-The ERC20 Messaging frontend for the Playground consists of a [basic web server](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/backend) and the [frontend](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/frontend) you interacted with previously. The frontend utilizes the [ethers.js library](https://docs.ethers.org/v5/) to call the respective contracts. The first action you tried, the registration of a token, invokes a [`deployToken`](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/blob/v0.1.4/packages/frontend/src/hooks/useRegisterToken.ts#L41) call on the [ERC20Messaging contract](https://github.com/topos-protocol/topos-smart-contracts/blob/main/contracts/examples/ERC20Messaging.sol). Similarly, you can see that a token is sent by calling the [`sendToken`](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/blob/v0.1.4/packages/frontend/src/hooks/useSendToken.ts#L34) function of [the contract](https://github.com/topos-protocol/topos-smart-contracts/blob/da41ebbeaeb3ed91b5aa1c6e750f754a7316f721/contracts/examples/ERC20Messaging.sol#L97).
+The ERC20 Messaging frontend for the Playground consists of a [basic web server](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/backend) and the [frontend](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/frontend) you interacted with previously. The frontend utilizes the [ethers.js library](https://docs.ethers.org/v5/) to call the respective contracts. The first action you tried, the registration of a token, invokes the [`deployToken`](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/blob/v0.1.4/packages/frontend/src/hooks/useRegisterToken.ts#L41) function on the [ERC20Messaging contract](https://github.com/topos-protocol/topos-smart-contracts/blob/main/contracts/examples/ERC20Messaging.sol). Similarly, you can see that a token is sent by calling the [`sendToken`](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/blob/v0.1.4/packages/frontend/src/hooks/useSendToken.ts#L34) function of [the contract](https://github.com/topos-protocol/topos-smart-contracts/blob/da41ebbeaeb3ed91b5aa1c6e750f754a7316f721/contracts/examples/ERC20Messaging.sol#L97).
 
 To be more precise, a cross-subnet token transfer is divided into the [three steps](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/frontend/src/components/steps) that were displayed by the ERC20 Messaging frontend during your test. You can examine the code to better understand the process behind the steps.
 
 One thing to mention specifically in relation to the Playground is the [use of the executor service](https://github.com/topos-protocol/dapp-frontend-erc20-messaging/tree/v0.1.4/packages/frontend/src/components/steps/Step2.tsx#L169). What the service essentially does is:
 
-1. [Wait](https://github.com/topos-protocol/executor-service/blob/v0.2.0/src/execute/execute.processor.ts#L84) for the expected certificate to be stored on-chain.
+1. [Wait](https://github.com/topos-protocol/executor-service/blob/v0.2.0/src/execute/execute.processor.ts#L84) for the expected certificate to be delivered.
 2. [Submit](https://github.com/topos-protocol/executor-service/blob/v0.2.0/src/execute/execute.processor.ts#L99) the transaction payload and Merkle proof of inclusion.
 
 # Up next

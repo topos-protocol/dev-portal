@@ -11,7 +11,7 @@ The second chapter of the Topos Developer Portal brings you into contact with th
   <BannerImage>![](./images/topos_header_handson.png)</BannerImage>
   <BannerContent>
     ## Start experimenting
-    
+
     If you're ready to go, click below to begin trying out your first cross-subnet token transfer on the Topos `Testnet`.
 
     <ButtonLink to={'/content/module-2/1-ERC20-Messaging.html'} label="Time to play!" />
@@ -39,6 +39,11 @@ The second chapter of the Topos Developer Portal brings you into contact with th
   <GridItem>
     <Card title="4: Topos CLI" to={'/content/module-2/4-cli.html'}>
       The Topos CLI is frequently mentioned in this chapter – here you will look at it directly. You will install and test the tool that allows you to collectively start and run the different components you have been exploring.
+    </Card>
+  </GridItem>
+  <GridItem>
+    <Card title="5: Topos Testnet phases" to={'/content/module-2/5-testnet.html'}>
+      The Topos public testnet is there for our developer community to deploy apps and experiment with the novel interaction model the Topos protocol enables. It's an early preview of what is coming. In this section we present the upcoming phases to give interested parties and overview of the remaining phases.
     </Card>
   </GridItem>
 </Grid>
