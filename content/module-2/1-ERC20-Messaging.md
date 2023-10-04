@@ -185,8 +185,8 @@ The following steps describe what actually happened:
 
 1. The ERC20 Messaging frontend deployed a token contract on each subnet for the token you registered on it.
 1. To make a cross-subnet transfer, the dApp submitted a transaction to the Incal subnet to burn the transferred tokens there.
-1. Next, the sending subnet (Incal) prepares the input data for the ZK proof and submits it to the prover cluster by way of the Sequencer
-1. The sequencer prepares the Certificate, containing the ZK proof and a few other pieces of data and broadcasts it to the TCE network.
+1. Next, the sending subnet (Incal) prepares the input data for the ZK proof and submits it to the prover cluster by way of the Sequencer (for the testnet the prover is not active)
+1. The sequencer prepares the Certificate and broadcasts it to the TCE network.
 1. In parallel, the ERC20 frontend made a request to the [executor service](https://github.com/topos-protocol/executor-service) containing a Merkle proof of the Incal transaction (proof of inclusion of its receipt in the receipt trie of the certified state transition) and the root of the transaction trie, which is used by the **ERC20Messaging** contract to retrieve the certificate from the **ToposCore** contract.
 1. Once the receiving side (the Topos Subnet in this case) has taken delivery of the Certificate from its dedicated TCE node and the context-specific information from the executor service, it can proceed to mint the transferred tokens.
 
