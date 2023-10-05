@@ -5,7 +5,7 @@ export const Logo: React.FC = () => {
     <>
       <svg
         aria-hidden="true"
-        className="h-[31px] w-[200px] max-sm:hidden md:block"
+        className="h-[31px] w-[200px] max-sm:hidden md:block "
         viewBox="0 0 112 17"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
