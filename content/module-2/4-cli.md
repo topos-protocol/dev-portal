@@ -349,7 +349,7 @@ $ topos node up --name seq-bob
 $ docker run --rm -it \
     -v $(pwd)/.config:/root/.config \
     --network net-topos-subnet \
-    topos-cli:v0.0.53 node up --name seq-bob
+    topos-cli:v0.0.5 node up --name seq-bob
 ```
 
 As before, do not forget to launch it inside the `net-topos-subnet` network so that it can contact `val-alice`.
