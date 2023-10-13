@@ -21,7 +21,6 @@ import { ZoomImage } from '../mdx/ZoomImage';
 import { MDXProvider } from '@mdx-js/react';
 import Base from '../base';
 import formatSlugToImageName from '../../utils/formatSlugToImageName';
-import CookieConsent from '../CookieConsent';
 
 export const Head = ({ pageContext }: PageNode) => {
   const title = `${
@@ -46,6 +45,12 @@ export const Head = ({ pageContext }: PageNode) => {
           key={name}
         />
       ))}
+      {config.googleSiteVerification && (
+        <meta
+          name="google-site-verification"
+          content={config.googleSiteVerification}
+        />
+      )}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={config.twitterName} />
       <meta name="og:site_name" content={config.title} />
