@@ -9,6 +9,14 @@ You have tried the **ERC20 Messaging dApp** to see Topos in action and have exec
 
 You can now use the **[Topos Explorer](https://explorer.testnet-1.topos.technology)** to see more details. Because Topos subnets are EVM-based, an explorer for Topos can use the standard Ethereum [JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/). In addition, the Transmission Control Engine (TCE) will expose a [GraphQL](https://en.wikipedia.org/wiki/GraphQL) endpoint available ([here](https://graphql.topos-subnet.testnet-1.topos.technology/)).
 
+<HighlightBox type="info" title="Blockscout">
+
+In addition to the Topos Explorer, you can also access [Blockscout](https://www.blockscout.com/) instances for the Topos Subnet and Incal. Blockscout is a fully-featured open source blockchain explorer tailored to work with any EVM-based blockchain. Blockscout will provide you with more detailed information about the blockchains themselves while the Topos Explorer will focus on Topos-specific information.
+
+[Topos Blockscout](https://topos.blockscout.testnet-1.topos.technology/) | [Incal Blockscout](https://incal.blockscout.testnet-1.topos.technology/)
+
+</HighlightBox>
+
 {/* include more information about the TCE API if available */}
 
 <Steps>
