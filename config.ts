@@ -20,6 +20,7 @@ const config: Config = {
     indexName: 'crawler_Topos docs platform (new)',
     placeholder: 'Search documentation'
   },
+  googleSiteVerification: 'ewK_x9p9N-cr_rA0dKgdo6YGqZGgnRcBVn2bZeaZQ_o',
   navigation: [
     {
       label: 'What is Topos?',
@@ -110,7 +111,7 @@ const config: Config = {
   ],
   storage: {
     cookieConsentKey: 'cookieConsent'
-  }
+  },
 };
 
 export default config;

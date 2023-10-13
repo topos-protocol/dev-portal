@@ -33,4 +33,5 @@ export default interface Config {
   indexPath: string;
   docSearch: DocSearch;
   storage: IStorage;
+  googleSiteVerification: string;
 }
