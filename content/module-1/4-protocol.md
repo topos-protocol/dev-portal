@@ -43,7 +43,7 @@ The initial subnets will contain blockchains based on [Polygon Edge](https://git
 
 ## Universal Certification Interface (UCI)
 
-The [UCI](https://github.com/topos-network/topos/blob/main/crates/topos-uci/src/lib.rs) is an interface that needs to be implemented by subnets through the subnet's **sequencer** to send and receive **certificates** to and from the TCE – which can only reason about certificates complying with the UCI.
+The [UCI](https://github.com/topos-protocol/topos/blob/main/crates/topos-uci/src/lib.rs) is an interface that needs to be implemented by subnets through the subnet's **sequencer** to send and receive **certificates** to and from the TCE – which can only reason about certificates complying with the UCI.
 
 ![Topos component - UCI](./images/topos-components-uci.png)
 
@@ -66,7 +66,7 @@ The certificates of a specific subnet form a linked list, in which each certific
 
 Each subnet wishing to participate in the Topos ecosystem needs to register on the Topos Subnet. What gets registered is the new subnet's public key, commonly referred to as the **subnet's ID**. A subnet's ID must remain static throughout its lifetime and through cycles of private key regeneration.
 
-Topos is agnostic as to how a subnet generates its public key as long as it remains static. Schnorr signatures on certificates are supported, and the [ICE-FROST](https://github.com/topos-network/ice-frost) Distributed Key Generation (DKG) scheme accounts for malicious validators, or validators that may be offline. Subnets can use ICE-FROST to generate Schnorr signatures in a distributed manner, and hence create a certificate after the chosen threshold is met. It is up to a subnet's governance, or administrators, to choose to use ICE-FROST or another scheme.
+Topos is agnostic as to how a subnet generates its public key as long as it remains static. Schnorr signatures on certificates are supported, and the [ICE-FROST](https://github.com/topos-protocol/ice-frost) Distributed Key Generation (DKG) scheme accounts for malicious validators, or validators that may be offline. Subnets can use ICE-FROST to generate Schnorr signatures in a distributed manner, and hence create a certificate after the chosen threshold is met. It is up to a subnet's governance, or administrators, to choose to use ICE-FROST or another scheme.
 
 ICE-FROST has several advantages:
 
@@ -84,7 +84,7 @@ Each transaction of a subnet is first executed by the EVM blockchain, which keep
 
 ## Sequencers
 
-A subnet's [sequencer](https://github.com/topos-network/topos/blob/main/crates/topos-sequencer-subnet-client/src/lib.rs) is a program that interacts with the blockchain and the TCE network. One of the subnet's validators will run the sequencer in order to receive and submit certificates.
+A subnet's [sequencer](https://github.com/topos-protocol/topos/blob/main/crates/topos-sequencer-subnet-client/src/lib.rs) is a program that interacts with the blockchain and the TCE network. One of the subnet's validators will run the sequencer in order to receive and submit certificates.
 
 The sequencer can create outgoing certificates by leveraging the **zero-knowledge Ethereum Virtual Machine (zkEVM)** or by delegating this task to a specialized prover.
 
