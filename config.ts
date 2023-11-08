@@ -85,6 +85,27 @@ const config: Config = {
       ]
     },
     {
+      label: 'Network',
+      content: [
+        {
+          label: 'Faucet',
+          path: 'https://faucet.testnet-1.topos.technology/'
+        },
+        {
+          label: 'Blockscout',
+          path: 'https://topos.blockscout.testnet-1.topos.technology/'
+        },
+        {
+          label: 'Explorer',
+          path: 'https://explorer.testnet-1.topos.technology/'
+        },
+        {
+          label: 'Important Addresses',
+          path: '/content/topos-reference/network.html'
+        }
+      ]
+    },
+    {
       label: 'Topos Terms',
       content: [
         {
