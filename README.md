@@ -2,7 +2,7 @@
 
 This repository contains the documentation platform for the Topos protocol and ZkEcosystem.
 
-The platform is deployed automatically to
+The platform is deployed automatically to:
 
 ➡️ [https://docs.topos.technology](https://docs.topos.technology)
 
@@ -33,7 +33,7 @@ npm install -g gatsby-cli
 Next to the default `gatsby-config.ts` file, additional configuration options are exposed in `config.ts`.
 
 > [!NOTE]
-> Please refer to the [TECHNICAL-SETUP.md](TECHNICAL-SETUP.md) guide for more information on the configuration, build and deployment of the platform.
+> Please refer to the [TECHNICAL-SETUP.md](TECHNICAL-SETUP.md) guide for more information on the configuration, build, and deployment of the platform.
 
 ## Run local dev environment
 
