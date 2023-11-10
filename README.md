@@ -1,6 +1,6 @@
-# Topos docs platform
+# Toposware docs platform
 
-This repository contains the documentation platform for the Topos protocol and ZkEcosystem.
+This repository contains the documentation platform for [Toposware](https://toposware.com).
 
 The platform is deployed automatically to
 
@@ -11,6 +11,9 @@ This repository is currently maintained by [B9Lab](https://github.com/b9lab).
 ## Contribute
 
 We welcome all contributions to this repository. If you see any error or would like to propose an idea, please feel free to open an Issue, or submit an update via a Pull Request.
+
+> [!NOTE]
+> Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide for further information.
 
 ## Install
 Install packages using
@@ -29,6 +32,8 @@ npm install -g gatsby-cli
 
 Next to the default `gatsby-config.ts` file, additional configuration options are exposed in `config.ts`.
 
+> [!NOTE]
+> Please refer to the [TECHNICAL-SETUP.md](TECHNICAL-SETUP.md) guide for more information on the configuration, build and deployment of the platform.
 
 ## Run local dev environment
 
