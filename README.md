@@ -1,6 +1,6 @@
-# Toposware docs platform
+# Topos docs platform
 
-This repository contains the documentation platform for [Toposware](https://toposware.com).
+This repository contains the documentation platform for the Topos protocol and ZkEcosystem.
 
 The platform is deployed automatically to
 
