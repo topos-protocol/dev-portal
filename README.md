@@ -13,7 +13,7 @@ This repository is currently maintained by [B9Lab](https://github.com/b9lab).
 We welcome all contributions to this repository. If you see any error or would like to propose an idea, please feel free to open an Issue, or submit an update via a Pull Request.
 
 > [!NOTE]
-> Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide for further information.
+> Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide for further information on how to contribute to this repository.
 
 ## Install
 Install packages using
