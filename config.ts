@@ -92,8 +92,12 @@ const config: Config = {
           path: 'https://faucet.testnet-1.topos.technology/'
         },
         {
-          label: 'Blockscout',
+          label: 'Topos Blockscout',
           path: 'https://topos.blockscout.testnet-1.topos.technology/'
+        },
+        {
+          label: 'Incal Blockscout',
+          path: 'https://incal.blockscout.testnet-1.topos.technology/'
         },
         {
           label: 'Explorer',
