@@ -41,7 +41,7 @@ While holding immense potential, cross-chain transactions pose significant chall
 
 </HighlightBox>
 
-Blockchains are designed to be **self-sufficient decentralized ledgers**. The internal state is the result of deterministic computation. In summary:
+Blockchains are designed to be **self-sufficient decentralized ledgers**, with the state of a given instance of a blockchain being the only correct interpretation of the history of that instance.  The internal state is the result of deterministic computation. In summary:
 
 * An initial state was created, according to a prescribed protocol.
 * Cryptographically signed transactions occurred, according to a prescribed protocol.
@@ -109,7 +109,7 @@ In the current example, inclusion is proven with:
 
 ### Validity proof
 
-Instead of proving the validity of a subnet's state transitions by re-executing the transactions, Topos leverages **validity proofs** of execution. These proofs allow for the verification of complex subnet computations without requiring each verifying actor to perform the computations themselves, or even to have access to all of the underlying and potentially sensitive data (such as state or transaction details). The information necessary to verify the proof is included in a certificate and exchanged over the Transmission Control Engine (TCE).
+Instead of proving the validity of a subnet's state transitions by re-executing the transactions, Topos leverages **validity proofs** of execution. These proofs allow for the verification of subnet state transitions without requiring each verifying actor to perform the state transitions themselves, or even to have access to all of the underlying and potentially sensitive data (such as state or transaction details). The information necessary to verify the proof is included in a certificate and exchanged over the Transmission Control Engine (TCE).
 
 In the current example, a validity proof is created based on the following elements:
 

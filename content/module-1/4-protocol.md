@@ -21,7 +21,7 @@ Do not be intimidated by the above diagram, as you will review its details in th
 
 ## Subnets
 
-Topos allows communication across so-called **subnets**. A subnet is a set of components including a state machine. This state machine can be a blockchain, which will be the focus here.
+Topos allows communication across so-called **subnets**. A subnet is composed of components including a state machine. This state machine can be a blockchain, and it will commonly be a blockchain, which will be the focus here. It is important to note, however, that there is no requirement for the state machine to be a blockchain. Thus, a subnet could be built around a legacy applications, databases, key-value stores, and anything else that can be represented as a state machine.
 
 ![Topos component - subnet](./images/topos-components-subnet.png)
 
