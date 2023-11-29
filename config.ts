@@ -17,7 +17,7 @@ const config: Config = {
   docSearch: {
     appId: 'S36OISFKTX',
     apiKey: 'fc77ad501873a0a81b4c39e02a4aaaac',
-    indexName: 'crawler_Topos docs platform (new)',
+    indexName: 'crawler_Toposware docs platform (new)',
     placeholder: 'Search documentation'
   },
   googleSiteVerification: 'ewK_x9p9N-cr_rA0dKgdo6YGqZGgnRcBVn2bZeaZQ_o',
