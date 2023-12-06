@@ -110,8 +110,16 @@ const config: Config = {
       ]
     },
     {
-      label: 'Topos Terms',
+      label: 'Topos Reference',
       content: [
+        {
+          label: 'FAQ',
+          path: '/content/topos-reference/faq.html'
+        },
+        {
+          label: 'Weak Causal Probabilistic Reliable Broadcast',
+          path: '/content/topos-reference/wcprb.html'
+        },
         {
           label: 'Glossary',
           path: '/content/glossary.html'
