@@ -29,7 +29,7 @@ const createPages = async ({ actions, graphql }: CreatePagesArgs) => {
     result.data.allMdx.edges.forEach(({ node }: any) => {
       const path = mdxPath(node.internal.contentFilePath);
       const isProtectedRoute = isProtectedMdxPath(
-        node.internal.contentFilePath
+        node.internal.contentFilePath,
       );
       if (!isProtectedRoute) {
         createPage({
