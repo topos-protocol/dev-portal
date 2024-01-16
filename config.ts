@@ -98,6 +98,15 @@ const config: Config = {
       ],
     },
     {
+      label: 'How Tos',
+      content: [
+        {
+          label: 'Add Topos and Incal to Metamask',
+          path: '/content/how-to/add-topos-and-incal-to-metamask.html'
+        },
+      ]
+    },
+    {
       label: 'Network',
       content: [
         {
