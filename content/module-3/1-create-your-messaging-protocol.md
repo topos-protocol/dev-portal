@@ -5,7 +5,7 @@ description: Create your custom messaging protocol
 
 # Create your messaging protocol
 
-Developing a custom messaging protocol is in essence about writing a smart contract, in the fashion of **ERC20Messaging**, that 1. inherits **ToposMessaging** to get set and ready with the core functionalities needed for cross-subnet messaging (e.g., emitting a special event to announce a cross-subnet message, verifying a proof of receipt inclusion) on a sending and a receiving subnet, and 2. adds the custom business logic that governs the cross-subnet message execution (e.g., burning and minting an internal ERC20 token in **ERC20Messaging**).
+Developing a custom messaging protocol is in essence about writing a smart contract, in the fashion of **ERC20Messaging**, that 1. inherits **ToposMessaging** for the core features needed for cross-subnet messaging (e.g., emitting a special event to announce a cross-subnet message, or verifying a proof of receipt inclusion) on a sending and a receiving subnet, and 2. adds the custom business logic that governs the cross-subnet message execution (e.g., burning and minting an internal ERC20 token in **ERC20Messaging**).
 
 We can see that a messaging protocol developer merely needs to focus on the second point, i.e., writing the protocol custom business logic, and does not have to care about the deeper technical details of validating a cross-subnet message. That's the power offered by the **ToposMessaging** smart contract.
 
