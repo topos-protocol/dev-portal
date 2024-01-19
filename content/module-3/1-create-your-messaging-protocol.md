@@ -17,7 +17,7 @@ From start to end, a messaging protocol walks the following path:
 
 1- An arbitrary business logic is executed on the sending subnet
 
-2- A specific event is emitted on the sending subnet in order to announce the cross-subnet message
+2- A specific event is emitted on the sending subnet to announce the cross-subnet message
 
 3- A specific transaction is sent to the receiving subnet in order to validate and execute the cross-subnet message
 
