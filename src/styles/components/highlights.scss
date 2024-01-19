@@ -1,6 +1,7 @@
 .highlightbox {
   * {
     @apply text-inherit;
+    overflow: auto;
   }
 
   &.info {

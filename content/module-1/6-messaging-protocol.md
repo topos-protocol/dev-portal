@@ -9,19 +9,15 @@ The Topos protocol provides for the creation, verification and delivery of certi
 
 The developers of dApps and cross-subnet messaging flows can leverage these certificates to design **secure messaging protocols**. By storing relevant certificates on-chain, it is possible to benefit from their security guarantees when handling cross-subnet messages.
 
-To demonstrate best practice and help bootstrap subnet administrators, Topos has created a series of smart contracts:
+To demonstrate best practices and help bootstrap subnet administrators, Topos has created a series of smart contracts:
 
 1. The **ToposCore** smart contract can be used to store certificates on-chain. Although not compulsory, it makes sense for a subnet to have a single instance of such a certificate-storing smart contract.
-2. The **ToposMessaging** smart contract makes use of ToposCore. It has functions to verify proofs of inclusion and to mark completed messages as used, thereby preventing replay. It is not meant to be deployed directly, but instead to be used as an inherited smart contract for the messaging protocol proper.
+2. The **ToposMessaging** smart contract gathers features that are core to messaging protocols. It has functions to verify proofs of inclusion and to mark completed messages as used, thereby preventing replay. To ease the development of new messaging protocols, these features can be had for free by creating a messaging protocol smart contract that inherits ToposMessaging.
 3. **ERC20Messaging** is an example of a messaging protocol smart contract that implements the semantics of a cross-subnet ERC-20 token transfer. It inherits from ToposMessaging. With ERC20Messaging, it is possible to deploy new ERC-20 token smart contracts, and to use those to send and receive cross-subnet token transfers. With this contract, a cross-subnet token transfer was chosen to consist of a _burn_ on the source subnet and a _mint_ on the target subnet.
 
 The **delivery** of cross-subnet messages is not part of the Topos protocol, but instead is left to the administrators of subnets. Here again, Topos has created an example of a delivery mechanism, called the **executor service**, which is compatible with ToposCore and ERC20Messaging.
 
-<HighlightBox type="tip">
-
 To develop intuition about how this works, consider this non-exhaustive description of the process and the concerns that are addressed by the protocol. It demonstrates a cross-subnet ERC-20 transfer implemented via ERC20Messaging and the executor service.
-
-</HighlightBox>
 
 1. On the source subnet:
     * The user **allows** the ERC20Messaging contract instance to be a spender (and therefore burner) of a number of its tokens.
@@ -45,7 +41,7 @@ To develop intuition about how this works, consider this non-exhaustive descript
 4. On the target subnet:
     * The sequencer **hears about** the relevant certificate.
     * The sequencer **confirms** that the certificate mentions its subnet ID as a target and **records** the certificate in ToposCore (if it is found acceptable).
-    * The executor service **finds** that the certificate is already in ToposCore. Or the executor service **detects** the `CertStored` event from ToposCore with the receipts root matching that of the original transaction's state transition.
+    * The executor service queries ToposCore for the certificate (passing the receipts root matching that of the original transaction's state transition).
     * The executor service sends a transaction that is a call to the **`execute`** function of the ERC20Messaging contract (inherited from ToposMessaging), including the previously collected receipt and its Merkle proof of inclusion.
     * The ERC20Messaging contract **verifies** the inclusion proof with the stored certificate.
     * Upon successful verification, the ERC20Messaging contract **is confident** that the original transaction and its receipt **are valid**.
