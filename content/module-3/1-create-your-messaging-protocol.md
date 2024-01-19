@@ -15,13 +15,13 @@ Before we dive into the technical details, let's go over the steps that, from a 
 
 From start to end, a messaging protocol walks the following path:
 
-1- An arbitrary business logic is executed on the sending subnet
+1- Some business logic is executed on the sending subnet
 
 2- A specific event is emitted on the sending subnet to announce the cross-subnet message
 
 3- A specific transaction is sent to the receiving subnet to validate and execute the cross-subnet message
 
-4- An arbitary business logic is executed on the receiving subnet
+4- Some business logic is executed on the receiving subnet
 
 As mentioned before, all a messaging protocol developer needs to care about, are points 1. and 4., the rest being inherited for free by **ToposMessaging**.
 
@@ -35,15 +35,15 @@ As mentioned before, all a messaging protocol developer needs to care about, are
 
 </HighlightBox>
 
-Now, we will detail the ToposMessaging interface and its relevant methods for you to start leveraging its power.
+Now, we will detail the ToposMessaging interface and its relevant methods for you to use it.
 
 ## ToposMessaging
 
-Like messaging protocol contracts inheriting it, **ToposMessaging** exposes functionalities that relate either to the sending subnet or the receiving subnet in a cross-subnet messaging flow.
+Like messaging protocol contracts inheriting it, **ToposMessaging** exposes features that relate either to the sending subnet or the receiving subnet in a cross-subnet messaging flow.
 
 ### Sending subnet (1)
 
-- `_emitMessageSentEvent(SubnetId targetSubnetId)`: This function expects a target subnet id which is the id of the receiving subnet, and takes care of emitting the specific event mentioned in Messaging protocol flow, point 2. This event is **ToposCore**'s **CrossSubnetMessageSent** event, which is not defined in **ToposMessaging**, hence the `_emitMessageSentEvent` helper function.
+- `_emitMessageSentEvent(SubnetId targetSubnetId)`: This function expects a target subnet id which is the id of the receiving subnet, and takes care of emitting the specific event mentioned in Messaging protocol flow, point 2. This event is **ToposCore**'s [CrossSubnetMessageSent](https://github.com/topos-protocol/topos-smart-contracts/blob/main/contracts/interfaces/IToposCore.sol#L28) event, which is not defined in **ToposMessaging**, hence the `_emitMessageSentEvent` helper function.
 
 ### Receiving subnet (1)
 
@@ -59,7 +59,7 @@ The `proof` in question is a merkle proof proving the inclusion of a receipt in 
 
 **ERC20Messaging** emits, on a sending subnet, the following `TokenSent` event to detail which cross-subnet ERC20 transfer was requested:
 
-```
+```solidity
 event TokenSent(
     SubnetId indexed targetSubnetId,
     string symbol,
@@ -97,7 +97,7 @@ Again, we can separate these two functions by the subnet on which they are meant
 
 ### Sending subnet (2)
 
-The code of the first function is pretty much arbitrary and depends on what you want the messaging protocol to be about, see the **ERC20Messaging** example below.
+The code of the first function is pretty much arbitrary and depends on what you want the messaging protocol to be about. See the **ERC20Messaging** example below.
 
 <HighlightBox type="info" title="Example: ERC20Messaging">
 
@@ -109,7 +109,7 @@ The code of the first function is pretty much arbitrary and depends on what you 
 
 3- Emits the **CrossSubnetMessageSent** core event to announce the cross-subnet message
 
-```
+```solidity
 function sendToken(SubnetId targetSubnetId, string calldata symbol, address receiver, uint256 amount) external {
     if (_toposCoreAddr.code.length == uint256(0)) revert InvalidToposCore();
     Token memory token = getTokenBySymbol(symbol);
@@ -123,7 +123,7 @@ function sendToken(SubnetId targetSubnetId, string calldata symbol, address rece
 
 Only the last line that emits the **CrossSubnetMessageEvent** is a requirement for all messaging protocols. So if we were to name the first function of **CustomMessaging** `doSomething`, `doSomething` would have the following structure:
 
-```
+```solidity
 function doSomething(SubnetId targetSubnetId, ...otherArgs) external {
     ...                                    // 1- Do something
     ...                                    // 2- Emit an event that describes the something
@@ -135,7 +135,7 @@ function doSomething(SubnetId targetSubnetId, ...otherArgs) external {
 
 Let's now take a look at the second function (`_execute`) signature:
 
-```
+```solidity
 function _execute(
     uint256[] memory logIndexes,
     address[] memory logsAddress,
@@ -153,7 +153,7 @@ With `logIndexes`, you can retrieve the index of the logs that semantically will
 
 <HighlightBox type="tip" title="Which log indexes should I use?">
 
-Remember that because you use the same messaging protocol contract on the sending and receiving subnets, and you developped that messaging protocol, you know which log leads to what information. 
+Remember that because you use the same messaging protocol contract on the sending and receiving subnets, and you developed that messaging protocol, you know which log leads to what information. 
 
 For example, looking at the code of **ERC20Messaging**, we can see that the `TokenSent` event is sent after a few other events related to the ERC20 allowance and burn operations. To be certain, one can inspect the receipt of a `sendToken` transaction and find the index of the `TokenSent` index.
 
@@ -172,7 +172,7 @@ Should you have other logs needed to decode in order to execute the cross-subnet
 
 Now that you have retrieved the right log index, you can retrieve the rest of the log's data you are interested in:
 
-```
+```solidity
 # pseudo-code
 myLogIndex = logIndexes[0] // myLog == 4
 logsAddress[myLogIndex]    // This is the address of the contract which emitted that log
@@ -186,7 +186,7 @@ From the address of the contract which emitted the log, you can verify that the 
 
 **ERC20Messaging**'s `_execute` function is coded as follows:
 
-```
+```solidity
 function _execute(
     uint256[] memory logIndexes,
     address[] memory logsAddress,
@@ -211,7 +211,7 @@ function _execute(
 <br/>
 As we can see, it starts by retrieving the expected index of the `TokenSent` event.
 
-```
+```solidity
 uint256 tokenSentEventIndex = logIndexes[0];
 ```
 Again, we know that the event is at index `0` because it is the only event we need to decode the ERC20 transfer that we need to execute on the receiving subnet, and because **ERC20Messaging**'s smart contract and frontend application were developed to work with that event only.
@@ -219,14 +219,14 @@ Again, we know that the event is at index `0` because it is the only event we ne
 <br/>
 Then, from the right index, the address of the contract that emitted the `TokenSent` event is retrieved and compared to the current address (the address of the **ERC20Messaging** smart contract instance being used). This is because **ERC20Messaging** expects all instances of its contract to be deployed at the same address on all subnets.
 
-```
+```solidity
 if (logsAddress[tokenSentEventIndex] != address(this)) revert InvalidOriginAddress();
 ```
 
 <br/>
 Next, from the right index and the corresponding array of topics, the target subnet id is retrieved. Index `1` is used because the first topic of an EVM event is the event signature, and the next are the indexed arguments of the event and `targetSubnetId` is the first and only indexed argument of the `TokenSent` event.
 
-```
+```solidity
 bytes32 targetSubnetId = logsTopics[tokenSentEventIndex][1];
 if (SubnetId.unwrap(networkSubnetId) != targetSubnetId) revert InvalidSubnetId();
 ```
@@ -234,7 +234,7 @@ if (SubnetId.unwrap(networkSubnetId) != targetSubnetId) revert InvalidSubnetId()
 <br/>
 Finally, the data field is decoded and the data to be used to execute the cross-subnet ERC20 transfer is retrieved (token symbol, receiver address, and amount), before the transfer gets executed by minting the token.
 
-```
+```solidity
 (string memory symbol, , address receiver, uint256 amount) = abi.decode(
     logsData[tokenSentEventIndex],
     (string, address, address, uint256)
@@ -248,4 +248,4 @@ _mintToken(symbol, receiver, amount);
 
 You now should have a deep understanding of what messaging protocols are in the Topos ecosystem and how they work. You got to see what **ToposMessaging** is and what functionalities it offers to messaging protocol developers ready to jump into the world of cross-subnet messaging. **ERC20Messaging**, the messaging protocol that we developed and deployed on our different networks, was mentioned many times to illustrate with a concrete example the steps that compose the development and use of a messaging protocol.
 
-The next steps after writing your messaging protocol will be to create a dapp-frontend, if needed, to let your users start using your dApp, and start, if needed too, interacting with the Executor Service to delegate that `execute` function call to it (and prevent your users from paying transaction fees twice).
+The next steps after writing your messaging protocol will be to create a dapp-frontend, if needed, to let your users start using your dApp, and to start, if needed, interacting with the Executor Service to delegate the `execute` function call to it (and prevent your users from paying transaction fees twice).
