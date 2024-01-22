@@ -88,7 +88,7 @@ const config: Config = {
       label: 'Next steps',
       content: [
         {
-          label: 'Chapter overview: Next steps',
+          label: 'Chapter Overview: Next steps',
           path: '/content/module-3',
         },
         {
@@ -98,13 +98,34 @@ const config: Config = {
       ],
     },
     {
-      label: 'How Tos',
+      label: 'Guides and How Tos',
       content: [
         {
           label: 'Add Topos and Incal to Metamask',
           path: '/content/how-to/add-topos-and-incal-to-metamask.html'
         },
+        {
+          label: 'Use the Faucet to Get Testnet Tokens',
+          path: '/content/how-to/use-the-faucet.html'
+        },
       ]
+    },
+    {
+      label: 'Topos Reference',
+      content: [
+        {
+          label: 'FAQ',
+          path: '/content/topos-reference/faq.html',
+        },
+        {
+          label: 'Weak Causal Probabilistic Reliable Broadcast',
+          path: '/content/topos-reference/wcprb.html',
+        },
+        {
+          label: 'Glossary',
+          path: '/content/glossary.html',
+        },
+      ],
     },
     {
       label: 'Network',
@@ -128,23 +149,6 @@ const config: Config = {
         {
           label: 'Important Addresses',
           path: '/content/topos-reference/network.html',
-        },
-      ],
-    },
-    {
-      label: 'Topos Reference',
-      content: [
-        {
-          label: 'FAQ',
-          path: '/content/topos-reference/faq.html',
-        },
-        {
-          label: 'Weak Causal Probabilistic Reliable Broadcast',
-          path: '/content/topos-reference/wcprb.html',
-        },
-        {
-          label: 'Glossary',
-          path: '/content/glossary.html',
         },
       ],
     },

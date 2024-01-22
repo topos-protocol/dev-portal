@@ -8,7 +8,8 @@ interface LinkProps extends React.HTMLAttributes<HTMLLinkElement> {
 export const MdLink: React.FC<LinkProps> = ({ href, children }) => {
   if (!href) return null;
   const isExternal =
-    (!href.startsWith('/') &&
+    (!href.startsWith('#') &&
+      !href.startsWith('/') &&
       !href.startsWith('./') &&
       !href.startsWith('../') &&
       !new URL(href).origin.startsWith(config.rootUrl)) ||

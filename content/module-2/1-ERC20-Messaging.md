@@ -17,14 +17,22 @@ Please make sure you have installed [MetaMask](https://metamask.io/download/) be
 
 With MetaMask installed, you can navigate to [ERC20 Messaging](https://dapp-frontend-erc20.testnet-1.topos.technology/):
 
-![dApp first page](./images/erc20index.png)
-
 You are now going to complete a cross-subnet, fungible token transfer from the Topos Subnet to the Incal subnet.
 
 <Steps>
 <StepItem>
 
 First, you must connect MetaMask with the **[Topos ERC20 Messaging dApp](https://dapp-frontend-erc20.testnet-1.topos.technology/)**:
+
+If you have not already done so, you will have to connect the ERC20 Messaging dApp to MetaMask and add the Topos and Incal subnets to your MetaMask wallet. To do this, follow the steps in our [How to add Topos and Incal to MetaMask](/content/how-to/add-topos-and-incal-to-metamask.html#alternative-method-leverage-the-erc20-messaging-app) guide.
+
+If you had previously following that guide, but you had performed the manual procedure, then you will still need to connect the dApp to MetaMask. If the upper right corner of the ERC20 Messaging dApp page looks like this, with a 'Connect to MetaMask' button:
+
+<ZoomImage small>
+![dApp first page](./images/erc20index.png)
+</ZoomImage>
+
+Then click the 'Connect to MetaMask' button and follow the instructions to connect the dApp to MetaMask.
 
 <ZoomImage small>
 ![dApp connect with MetaMask 1](./images/erc20connect.png)
@@ -34,42 +42,15 @@ First, you must connect MetaMask with the **[Topos ERC20 Messaging dApp](https:/
 ![dApp connect with MetaMask 2](./images/erc20connect2.png)
 </ZoomImage>
 
-The ERC20 Messaging dApp will display your address in the right top corner after the ERC20 dApp is connected to your wallet:
-
-<ZoomImage small>
-![dApp connect with MetaMask 2](./images/erc20indexconnected.png)
-</ZoomImage>
-
-Each time you pick up a sending subnet it will be automatically added to MetaMask, if it is the first time you attempt to do so.
-
-Add Topos to your networks:
-
-<ZoomImage small>
-![dApp adds network Topos](./images/erc20toposnetwork.png)
-</ZoomImage>
-
-Add Incal too:
-
-<ZoomImage small>
-![dApp adds network Incal](./images/erc20incalnetwork.png)
-</ZoomImage>
-
-If the network is already added to MetaMask, it will just ask for permission to switch the network. For example, for Topos:
-
-<ZoomImage small>
-![Switch network to Topos](./images/erc20switchnetworktopos.png)
-</ZoomImage>
-
-Or for Incal:
-
-<ZoomImage small>
-![Switch network to Incal](./images/erc20switchnetworktoposincal.png)
-</ZoomImage>
-
+Once the ERC20 Messaging dApp is displaying your address in the right top corner, the ERC20 dApp is connected to your wallet.
 </StepItem>
-<StepItem>
 
-In either case, select the **Incal subnet** in the dApp:
+<StepItem>
+Additionally, you will want to have requested tokens from the [Topos Faucet](https://faucet.testnet-1.topos.technology). If you have not done this yet, please follow the instructions in our [How to use the Faucet to get Testnet Tokens](/content/how-to/use-the-faucet.html) guide to do this.
+</StepItem>
+
+<StepItem>
+Your wallet is connected to the app, and you have some tokens to play with, so now you are ready to transfer some assets from one subnet to the other. To do this, first select the **Incal Subnet** in the dApp:
 
 <ZoomImage small>
 ![Incal page](./images/sendingincal.png)
@@ -84,25 +65,11 @@ Register a token, here named `testToken`:
 ![Register token](./images/testtokenreg.png)
 </ZoomImage>
 
-<HighlightBox type="warning" title="Faucet">
-
-In order to register tokens on the subnets, you will need to pay fees on both subnets. Use the [Topos Faucet](https://faucet.testnet-1.topos.technology) to get some:
-
-<ZoomImage small>
-![Get some TOPOS and INCAL](./images/faucetindex.png)
-</ZoomImage>
-
-Make sure that the tokens are sent:
-
-![Tokens sent](./images/faucetsuc.png)
-
-Now you can pay the necessary fee for a token registration (e.g. for the Incal subnet):
+In order to register tokens on the subnets, you will need to pay fees on both subnets for the token registration (e.g. for the Incal subnet):
 
 <ZoomImage small>
 ![Pay INCA fee](./images/incafee.png)
 </ZoomImage>
-
-</HighlightBox>
 
 </StepItem>
 <StepItem>
@@ -115,7 +82,9 @@ Repeat these steps for the **Topos Subnet**.
 
 With both token setups done, you can try your first cross-subnet token transfer:
 
+<ZoomImage small>
 ![Incal page](./images/incaltopos.png)
+</ZoomImage>
 
 </StepItem>
 <StepItem>
