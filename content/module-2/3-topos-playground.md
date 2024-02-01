@@ -51,7 +51,7 @@ Minimum required versions:
 Once you have the necessary software on your machine, run:
 
 ```sh
-$ npm install @topos-protocol/topos-playground@0.1.0 --save-dev --save-exact
+$ npm install -g @topos-protocol/topos-playground@0.1.0 --save-dev --save-exact
 ```
 
 </StepItem>
