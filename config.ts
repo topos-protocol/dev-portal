@@ -75,12 +75,15 @@ const config: Config = {
           path: '/content/module-2/3-topos-playground.html',
         },
         {
+          label: 'Topos zkEVM Demo',
+          path: '/content/module-2/4-topos-zkevm-demo.html',
+        {
           label: 'Topos CLI',
-          path: '/content/module-2/4-cli.html',
+          path: '/content/module-2/5-cli.html',
         },
         {
           label: 'Topos Testnet',
-          path: '/content/module-2/5-testnet.html',
+          path: '/content/module-2/6-testnet.html',
         },
       ],
     },
