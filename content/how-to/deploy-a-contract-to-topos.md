@@ -68,7 +68,7 @@ To deploy your contract to this in-browser EVM, press the orange `Deploy` button
 If it worked, the bottom of your IDE window should show something like this:
 
 <ZoomImage small>
-![Remix IDE Deploy Success](/images/remix-deploy-success.png)
+![Remix IDE Deploy Success](/images/remix-ide-deploy-success.png)
 </ZoomImage>
 
 And at the bottom of the _Deploy & Run Transactions_ panel, you should see something like this:
