@@ -189,6 +189,8 @@ for line in fileinput.input(inplace=1):
 ```
 </CodeBlock>
 
+<GitHubBlock org="topos-protocol" repo="topos-playground" path="/src/main.ts" lines="2..13" highlights="7" language="typescript" />
+
 <TabGroup>
 <TabGroupItem title="Javascript" active>
 
