@@ -5,7 +5,7 @@ description: Learn how to deploy a smart contract to a subnet in the Topis ecosy
 
 # Deploy a Contract to a Topos Subnet
 
-The Topos Ecosystem consists of several subnets, which are generally EVM (Ethereum Virtual Machine) compatible blockchains. Although Topos encompasses other components, such as Certificate creation, the TCE, and ZK (Zero-Knowledge) proofs, the process of deploying contracts to one of its subnets is both straightforward and predictable.
+The Topos Ecosystem consists of several subnets, which are generally EVM (Ethereum Virtual Machine) compatible blockchains. Although Topos encompasses other components, such as [Certificate](/content/module-1/4-protocol.html#certificates) creation, the [TCE](/content/module-1/4-protocol.html#transmission-control-engine-tce-), and [ZK (Zero-Knowledge) proofs](/content/module-1/2-why-topos.html#zkps-in-general), the process of deploying contracts to one of its subnets is both straightforward and predictable.
 
  [Solidity](https://docs.soliditylang.org/en/latest) is the preferred programming language for developing smart contracts on the EVM. It's a compiled, object-oriented language designed for crafting programs, called _smart contracts_, that execute on the EVM. If you're unfamiliar with Solidity, we recommend familiarizing yourself with the basics of this language by exploring an [introductory guide](https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html) before proceeding further.
 
