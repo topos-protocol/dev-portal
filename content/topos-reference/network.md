@@ -18,8 +18,3 @@ The Incal Blockscout can be found at [https://incal.blockscout.testnet-1.topos.t
 ## Explorer
 
 The Topos network explorer can be found at [https://explorer.testnet-1.topos.technology/](https://explorer.testnet-1.topos.technology/).
-
-## Important Contract Addresses
-
-* ToposCoreProxy: 0x5a9957D674622F4562A0673D14105e36509F381d
-* SubnetRegistrator: 0xA14bF3186C276B0991f21135507aD6A26161F856
