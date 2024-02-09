@@ -66,7 +66,7 @@ Both of these will be installed for you.
 $ topos-zkevm-demo install
 ```
 
-<Gif image="topos-zkevm-demo-install" description="Running the topos-zkevm-demo install command" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-install.gif" alt="Running the topos-zkevm-demo install command" />
 
 <HighlightBox type="tip">
 1. You only need to run this command once. Be aware that building the zero-bin project may take a few minutes.
@@ -120,7 +120,7 @@ Ketchup transaction: 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2
 Mustard transaction: 0x5d98aba30400f5f0cc9c0f2d34f9f4280ec1fca88b177b3c2251ad1ea31a9af3 (inserted in block 4)
 ```
 
-<Gif image="topos-zkevm-demo-execute" description="Running the topos-zkevm-demo execute command" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-execute.gif" alt="Running the topos-zkevm-demo execute command" />
 
 From now on, the rest of the demo scenario will be divided into two roles: the `prover`, and the `verifier`.
 
@@ -166,7 +166,7 @@ node dist/main generate merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6
 0xf851a02d247ca1770e3221e8aecf9d04fc9b6f7ff07361715c71ef8703bf24c7905d4580808080808080a0cfa9df4025f175e0c4338efc950dc2e30214a08e8ba6940226a97fd977b156b08080808080808080,0xf9011130b9010d02f90109018301155cb9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0
 ```
 
-<Gif image="topos-zkevm-demo-generate-merkle-proof" description="Running the topos-zkevm-demo generate merkle proof" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-generate-merkle-proof.gif" alt="Running the topos-zkevm-demo generate merkle proof" />
 
 The command outputs the merkle proof as a comma-separated list of hex strings.
 
@@ -194,7 +194,7 @@ Proving block 4...
 Successfully generated proof for block 4! (proof available at DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof)!
 ```
 
-<Gif image="topos-zkevm-demo-generate-zk-proof" description="Running the topos-zkevm-demo generate zk proof" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-generate-zk-proof.gif" alt="Running the topos-zkevm-demo generate zk proof" />
 
 <HighlightBox type="warning">
 Depending on the hardware that you are using, generating the zk-proof may take several minutes.
@@ -258,7 +258,7 @@ Verifying merkle-proof for transaction: 0x785102ca9881b284588452cd90685d2c713cf6
 ✅ Merkle proof has been verified
 ```
 
-<Gif image="topos-zkevm-demo-verify-merkle-proof" description="Running the topos-zkevm-demo verify merkle proof" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-verify-merkle-proof.gif" alt="Running the topos-zkevm-demo verify merkle proof" />
 
 </StepItem>
 
@@ -280,7 +280,7 @@ Verifying zk-proof: DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof
 ✅ DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof has been verified
 ```
 
-<Gif image="topos-zkevm-demo-verify-zk-proof" description="Running the topos-zkevm-demo verify zk proof" style={{width: '60%'}} />
+<img src="/images/topos-zkevm-demo-verify-zk-proof.gif" alt="Running the topos-zkevm-demo verify zk proof" />
 
 Congratulations, you have now verified that the provided transaction is valid, with zero knowledge of the other transactions of the block!
 
