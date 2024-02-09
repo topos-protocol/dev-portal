@@ -15,7 +15,7 @@ In addition to the Topos Playground, there is another tool for interacting with 
 
 #### Software
 
-- Linux, MacOS
+- Linux or MacOS
 - [Docker](https://docs.docker.com/get-docker/_) version 17.06.0 or greater
 - [Docker Compose](https://docs.docker.com/compose/install/) version 2.0.0 or greater
 - [NodeJS](https://nodejs.dev/en/) version 16.0.0 or greater
@@ -51,28 +51,30 @@ Once the CLI is installed, you are ready to run the demo. The following steps wi
 <Steps>
 
 <StepItem>
-### Verify Install dependencies
+### Verify and install dependencies
 
-The first thing that you will want to do is to run it with the `install` command, which will verify your dependencies, and then download all of the other components that are required to run the demo.
+The first thing that you will want to do is to run the `topos-zkevm-demo` with the `install` command, which will verify your dependencies and then download all of the other components that are required to run the demo.
 
 Topos zkEVM Demo is built on top of two projects:
 
 - [local-zkevm](https://github.com/topos-protocol/local-zkevm): a setup to run a local development chain along with a [hardhat](https://hardhat.org/) sample project to deploy a demo contract and send transactions
 - [zero-bin](https://github.com/topos-protocol/zero-bin): the zk prover/verifier
 
+Both of these will be installed for you.
+
 ```bash
 $ topos-zkevm-demo install
 ```
+
 <Gif image="topos-zkevm-demo-install" description="Running the topos-zkevm-demo install command" style={{width: '60%'}} />
 
 <HighlightBox type="tip">
 1. You only need to run this command once. Be aware that building the zero-bin project may take a few minutes.
-2. Topos zkEVM Demo follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). Run `$ topos-zkevm-demo --help` to find the demo root directory, which we will later refer to as `DEMO_ROOT`.
+2. The Topos zkEVM Demo follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). Run `$ topos-zkevm-demo --help` and check the `configuration` section to find the demo root directory, which we will later refer to as `DEMO_ROOT`. In most cases, unless you have altered the `$XDG_DATA_HOME` environment variable, the demo root directory will be `$HOME/.local/share/topos-zkevm-demo`.
 </HighlightBox>
 </StepItem>
 
 <StepItem>
-
 ### Start the Erigon chain
 
 The demo utilizes Erigon, which is an implementation of Ethereum, to provide a local development chain. To start it, run:
@@ -80,14 +82,12 @@ The demo utilizes Erigon, which is an implementation of Ethereum, to provide a l
 ```bash
 $ topos-zkevm-demo start
 ```
-
 </StepItem>
 
 <StepItem>
-
 ### Execute the demo script
 
-You will find the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` (reminder: find your `DEMO_ROOT` by executing `$ topos-zkevm-demo --help`). As detailed above, the project contains a demo contract, and a demo script that deploys the contract and sends transactions to the local development chain.
+You will find the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` (reminder: find your `DEMO_ROOT` by executing `$ topos-zkevm-demo --help` and referencing the `configuration` section of the help). As detailed above, the project contains a demo contract, and a demo script that deploys the contract and sends transactions to the local development chain.
 
 Optionally, you can replace the contract and the script with your own.
 
@@ -127,11 +127,9 @@ From now on, the rest of the demo scenario will be divided into two roles: the `
 <HighlightBox type="tip">
 Don't close or clear the terminal window where you ran the `execute` command, as you will need the output of the script to proceed with the next steps.
 </HighlightBox>
-
 </StepItem>
 
 <StepItem>
-
 ### [Prover] Generate a merkle proof
 
 As a prover, your intention is the following: from the two transactions that are now part of your chain, you want to prove to a `verifier` that one of them is valid, without sharing any details about the other one (about any other transaction in the block).
@@ -202,8 +200,7 @@ Successfully generated proof for block 4! (proof available at DEMO_ROOT/topos-zk
 Depending on the hardware that you are using, generating the zk-proof may take several minutes.
 </HighlightBox>
 
-The command outputs the local path to the zk-proof file (`.zkproof` extension).
-
+The command outputs the local path to the zk-proof file (`.zkproof` extension). You will need to share this file with the `verifier` in step #7.
 </StepItem>
 
 <StepItem>
@@ -213,12 +210,11 @@ You have switched roles and are now a `verifier` who has been handed a few piece
 
 You will start by verifying the provided merkle proof.
 
-For that matter, you will execute the following command:
+To do this, you will execute the following command:
 
 ```bash
 $ topos-zkevm-demo verify merkle-proof <tx_hash> <merkle_root> <receipt_trie_root>
 ```
-
 
 You might have seen that when we use the command `verify merkle-proof`, it asks for a `receipt_trie_root` which we haven't talked about yet. Let's clear that up: a merkle proof is basically a way to show that a specific piece of data (the leaf) is part of a larger database (the trie) by using a series of steps (a path) that lead to a single, final piece of information (the trie root). This path is made up of several pieces of data (nodes or hashes) that, when put together in a certain way, create a unique identifier (hash) that matches the trie root. This match proves that the data we started with is definitely in the database. To check if this is true (to verify a merkle proof), you need three things: the starting piece of data (the leaf), the series of steps (the proof), and the final piece of information (the trie root).
 
@@ -291,11 +287,7 @@ Congratulations, you have now verified that the provided transaction is valid, w
 </StepItem>
 </Steps>
 
-## Conclusion
-
-You have now experienced the power of the Topos zkEVM on your local environment. This walkthrough has walked you through the generation of proofs, and the subsequent verification of those proofs. As mentioned at the start of the walkthrough, if you want to experiment with your own contract and script, you can replace the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` with your own.
-
-## A few details
+## A few final details
 
 - `zero-bin` parameters have been tailored to function with most of the transactions that are commonly executed on a chain. If you have used your own contract and script in the hardhat sample project, and have faced technical issues with the zk-proof generation, reach out to us on our [Discord](https://discord.gg/zMCqqCbGMV)!
 - You may have noticed that, as a `verifier`, you still had to interact with the Erigon chain to retrieve the receipt trie root. This means that you have full access to the chain, which is contradictory with the zero-knowledge aspect of verifying the block zk-proof. This is a shortcoming of Topos zkEVM Demo, and is where, in a real world scenario, the Topos zkEcosystem comes into play, by distributing verified subnet certificates that contain state transitions' zk-proofs and receipt trie roots to any verifiers. Read more about Topos [here](https://docs.topos.technology/content/module-1/4-protocol.html#transmission-control-engine-tce-)!
@@ -307,3 +299,11 @@ Topos zkEVM Demo comes with a few extra commands that we haven't detailed yet, b
 - `topos-zkevm-demo stop [-p]`: Stop the Erigon chain, optionally purge the chain with the `-p` flag. You can then run `start` and `execute` again.
 - `topos-zkevm-demo uninstall`: Uninstall Topos zkEVM Demo by cleaning your file system from the demo projects, shutting down the Erigon chain, etc.
 - `topos-zkevm-demo version`: Display Topos zkEVM Demo's version
+- 
+## Conclusion
+
+You have now experienced the power of the Topos zkEVM on your local environment. This walkthrough has walked you through the generation of proofs, and the subsequent verification of those proofs. As mentioned at the start of the walkthrough, if you want to experiment with your own contract and script, you can replace the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` with your own.
+
+# Up Next
+
+In this section, you got to interact with the components that create and verify ZK proofs in the Topos protocol, and in the previous section, which covered the Topos Playground, you were able to see multiple Topos components in action together. One of the components that helps to power the Topos Playground is the Topos CLI. In the next section, you will learn more about the Topos CLI and how to use it.
