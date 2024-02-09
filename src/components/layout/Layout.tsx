@@ -19,6 +19,8 @@ import { MdLink } from '../mdx/MdLink';
 import { Heading } from '../Heading';
 import { ZoomImage } from '../mdx/ZoomImage';
 import { MDXProvider } from '@mdx-js/react';
+import { Gif } from '../Gif';
+
 import Base from '../base';
 import formatSlugToImageName from '../../utils/formatSlugToImageName';
 
@@ -82,6 +84,7 @@ const Layout: React.FC<PageProps<Object, PageNodeContext>> = ({
     Grid,
     GridItem,
     ZoomImage,
+    Gif,
     h2: (props: any) => <Heading {...props} type="h2" />,
     h3: (props: any) => <Heading {...props} type="h3" />,
     a: (props: any) => <MdLink {...props} />,

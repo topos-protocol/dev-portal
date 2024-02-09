@@ -77,6 +77,7 @@ const config: Config = {
         {
           label: 'Topos zkEVM Demo',
           path: '/content/module-2/4-topos-zkevm-demo.html',
+        },
         {
           label: 'Topos CLI',
           path: '/content/module-2/5-cli.html',

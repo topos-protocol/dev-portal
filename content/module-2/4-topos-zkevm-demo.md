@@ -61,15 +61,13 @@ Topos zkEVM Demo is built on top of two projects:
 - [zero-bin](https://github.com/topos-protocol/zero-bin): the zk prover/verifier
 
 ```bash
-topos-zkevm-demo install
+$ topos-zkevm-demo install
 ```
+<Gif image="topos-zkevm-demo-install" description="Running the topos-zkevm-demo install command" style={{width: '60%'}} />
 
 <HighlightBox type="tip">
-
-Note 1: You only need to run this command once.
-
-Note 2: Topos zkEVM Demo follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). Run `$ topos-zkevm-demo --help` to find the demo root directory, which we will later refer to as `DEMO_ROOT`.
-
+1. You only need to run this command once. Be aware that building the zero-bin project may take a few minutes.
+2. Topos zkEVM Demo follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). Run `$ topos-zkevm-demo --help` to find the demo root directory, which we will later refer to as `DEMO_ROOT`.
 </HighlightBox>
 </StepItem>
 
@@ -80,7 +78,7 @@ Note 2: Topos zkEVM Demo follows the [XDG Base Directory Specification](https://
 The demo utilizes Erigon, which is an implementation of Ethereum, to provide a local development chain. To start it, run:
 
 ```bash
-topos-zkevm-demo start
+$ topos-zkevm-demo start
 ```
 
 </StepItem>
@@ -96,7 +94,7 @@ Optionally, you can replace the contract and the script with your own.
 When you are ready to execute the demo script, run:
 
 ```bash
-topos-zkevm-demo execute
+$ topos-zkevm-demo execute
 ```
 
 The command will output whatever is logged in the demo script, which by default is the address of the deployed contract, the hashes of the two transactions that were sent, as well as the block that included them (by default, the script will have the two transactions included in the same block).
@@ -104,7 +102,7 @@ The command will output whatever is logged in the demo script, which by default 
 For example:
 
 ```bash
-topos-zkevm-demo execute
+$ topos-zkevm-demo execute
 ```
 
 Outputs:
@@ -122,13 +120,19 @@ Ketchup transaction: 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2
 Mustard transaction: 0x5d98aba30400f5f0cc9c0f2d34f9f4280ec1fca88b177b3c2251ad1ea31a9af3 (inserted in block 4)
 ```
 
+<Gif image="topos-zkevm-demo-execute" description="Running the topos-zkevm-demo execute command" style={{width: '60%'}} />
+
 From now on, the rest of the demo scenario will be divided into two roles: the `prover`, and the `verifier`.
+
+<HighlightBox type="tip">
+Don't close or clear the terminal window where you ran the `execute` command, as you will need the output of the script to proceed with the next steps.
+</HighlightBox>
 
 </StepItem>
 
 <StepItem>
 
-### 4. [Prover] Generate a merkle proof
+### [Prover] Generate a merkle proof
 
 As a prover, your intention is the following: from the two transactions that are now part of your chain, you want to prove to a `verifier` that one of them is valid, without sharing any details about the other one (about any other transaction in the block).
 
@@ -140,12 +144,10 @@ To achieve this, we need to send two proofs to the `verifier`:
 By verifying the _merkle proof_, the `verifier` can verify that your transaction is part of a greater set of transactions (a set that remains unknown to the `verifier`), and by verifying the `zk-proof`, the `verifier` can ensure that this greater set of transactions is computationally valid. Altogether, the verifier will verify that your transaction is part of a valid block, hence is a valid transaction.
 
 <HighlightBox type="info">
-
 Note: The merkle proof is based on a transaction's receipt instead of the transaction itself (and is verified against a block receipt trie instead of its transaction trie), so that the `verifier` can additionally verify that the transaction was correctly executed as per the code of the destination contract (with the receipt `status`), and retrieve metadata describing that execution (with the receipt logs).
-
 </HighlightBox>
 
-Let's start by generating the merkle proof for your transaction:
+Let's start by generating the merkle proof for your transaction. The `tx_hash` should be a transaction hash, such as the `Ketchup transaction` hash that was output by the `execute` command.
 
 ```bash
 $ topos-zkevm-demo generate merkle-proof <tx_hash>
@@ -166,11 +168,18 @@ node dist/main generate merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6
 0xf851a02d247ca1770e3221e8aecf9d04fc9b6f7ff07361715c71ef8703bf24c7905d4580808080808080a0cfa9df4025f175e0c4338efc950dc2e30214a08e8ba6940226a97fd977b156b08080808080808080,0xf9011130b9010d02f90109018301155cb9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0
 ```
 
+<Gif image="topos-zkevm-demo-generate-merkle-proof" description="Running the topos-zkevm-demo generate merkle proof" style={{width: '60%'}} />
+
 The command outputs the merkle proof as a comma-separated list of hex strings.
 
-_Note: When copying the merkle proof, make sure to copy the whole list_.
+<HighlightBox type="info">
+Note: When copying the merkle proof, make sure to copy the whole list.
+</HighlightBox>
 
-### 5. [Prover] Generate a zk-proof
+</StepItem>
+
+<StepItem>
+### [Prover] Generate a zk-proof
 
 From the number of the block which includes your two transactions (reminder: the block number is output by the [execute](#3-execute-the-demo-script) command), you can generate a zk-proof of the block:
 
@@ -187,11 +196,20 @@ Proving block 4...
 Successfully generated proof for block 4! (proof available at DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof)!
 ```
 
+<Gif image="topos-zkevm-demo-generate-zk-proof" description="Running the topos-zkevm-demo generate zk proof" style={{width: '60%'}} />
+
+<HighlightBox type="warning">
+Depending on the hardware that you are using, generating the zk-proof may take several minutes.
+</HighlightBox>
+
 The command outputs the local path to the zk-proof file (`.zkproof` extension).
 
-### 6. [Verifier] Verify the merkle proof
+</StepItem>
 
-You have switched role and are now a `verifier` who has been handed over a few pieces of data (a transaction hash, a merkle proof, and a zk-proof), and your intention is to verify that the given transaction is a valid one.
+<StepItem>
+### [Verifier] Verify the merkle proof
+
+You have switched roles and are now a `verifier` who has been handed a few pieces of data (a transaction hash, a merkle proof, and a zk-proof), and your intention is to verify that the given transaction is a valid one.
 
 You will start by verifying the provided merkle proof.
 
@@ -201,9 +219,12 @@ For that matter, you will execute the following command:
 $ topos-zkevm-demo verify merkle-proof <tx_hash> <merkle_root> <receipt_trie_root>
 ```
 
-As you may have noticed, the `verify merkle-proof` commands expect a `receipt_trie_root` that we haven't discussed about. Let's explain its role: a merkle proof consists in a merkle path that leads to the trie root, i.e., it is a list of trie nodes (hashes) that, combined, output a hash that equals the trie root, proving that the leaf (the first node of the path) is indeed in the trie. To verify a merkle proof, you therefore need three pieces of information: a leaf, a proof, and the trie root.
 
-_Note: The `verify merkle-proof` command internally computes the right leaf for you, from the `tx_hash` that you pass._
+You might have seen that when we use the command `verify merkle-proof`, it asks for a `receipt_trie_root` which we haven't talked about yet. Let's clear that up: a merkle proof is basically a way to show that a specific piece of data (the leaf) is part of a larger database (the trie) by using a series of steps (a path) that lead to a single, final piece of information (the trie root). This path is made up of several pieces of data (nodes or hashes) that, when put together in a certain way, create a unique identifier (hash) that matches the trie root. This match proves that the data we started with is definitely in the database. To check if this is true (to verify a merkle proof), you need three things: the starting piece of data (the leaf), the series of steps (the proof), and the final piece of information (the trie root).
+
+<HighlightBox type="info">
+The `verify merkle-proof` command internally computes the right leaf for you, from the `tx_hash` that you pass.
+</HighlightBox>
 
 So, first thing first, you need to retrieve the receipt trie root:
 
@@ -221,7 +242,9 @@ $ topos-zkevm-demo util get-receipt-trie-root 0x785102ca9881b284588452cd90685d2c
 0x11ef2192f0c9aa092d69b9acf82085f384f172188cc321da94566dc9d33a3b18
 ```
 
-_Note: Internally, the `util get-receipt-trie-root` command fetches the block which includes the passed transaction hash, and outputs the receipt trie root from its header._
+<HighlightBox type="info">
+Internally, the `util get-receipt-trie-root` command fetches the block which includes the passed transaction hash, and outputs the receipt trie root from its header.
+</HighlightBox>
 
 Now, you can verify the merkle proof.
 
@@ -239,7 +262,12 @@ Verifying merkle-proof for transaction: 0x785102ca9881b284588452cd90685d2c713cf6
 ✅ Merkle proof has been verified
 ```
 
-### 7. [Verifier] Verify the zk-proof
+<Gif image="topos-zkevm-demo-verify-merkle-proof" description="Running the topos-zkevm-demo verify merkle proof" style={{width: '60%'}} />
+
+</StepItem>
+
+<StepItem>
+### [Verifier] Verify the zk-proof
 
 Now that you have verified that the provided transaction is indeed part of a state transition (a block), you can verify that it is valid by verifying the block's zk-proof:
 
@@ -256,9 +284,16 @@ Verifying zk-proof: DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof
 ✅ DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof has been verified
 ```
 
+<Gif image="topos-zkevm-demo-verify-zk-proof" description="Running the topos-zkevm-demo verify zk proof" style={{width: '60%'}} />
+
 Congratulations, you have now verified that the provided transaction is valid, with zero knowledge of the other transactions of the block!
 
+</StepItem>
+</Steps>
+
 ## Conclusion
+
+You have now experienced the power of the Topos zkEVM on your local environment. This walkthrough has walked you through the generation of proofs, and the subsequent verification of those proofs. As mentioned at the start of the walkthrough, if you want to experiment with your own contract and script, you can replace the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` with your own.
 
 ## A few details
 
@@ -267,7 +302,7 @@ Congratulations, you have now verified that the provided transaction is valid, w
 
 ### A few extra commands
 
-Topos zkEVM Demo comes with a few extra commands that we haven't detailed yet:
+Topos zkEVM Demo comes with a few extra commands that we haven't detailed yet, but that you may find useful:
 
 - `topos-zkevm-demo stop [-p]`: Stop the Erigon chain, optionally purge the chain with the `-p` flag. You can then run `start` and `execute` again.
 - `topos-zkevm-demo uninstall`: Uninstall Topos zkEVM Demo by cleaning your file system from the demo projects, shutting down the Erigon chain, etc.

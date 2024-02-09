@@ -37,7 +37,7 @@ The second chapter of the Topos Developer Portal brings you into contact with th
     </Card>
   </GridItem>
   <GridItem>
-    <Card title="4: Topos zkEVM Demo" to={"/content/module-2/4-topos-zkevm-demo.html'}>
+    <Card title="4: Topos zkEVM Demo" to={'/content/module-2/4-topos-zkevm-demo.html'}>
       Part of the power of Topos is the zkEVM. This unit shows you how to run the topos-zkevm-demo CLI tool in order to experience the power of the zkEVM on your local system.
     </Card>
   </GridItem>
