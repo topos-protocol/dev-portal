@@ -299,7 +299,7 @@ Topos zkEVM Demo comes with a few extra commands that we haven't detailed yet, b
 - `topos-zkevm-demo stop [-p]`: Stop the Erigon chain, optionally purge the chain with the `-p` flag. You can then run `start` and `execute` again.
 - `topos-zkevm-demo uninstall`: Uninstall Topos zkEVM Demo by cleaning your file system from the demo projects, shutting down the Erigon chain, etc.
 - `topos-zkevm-demo version`: Display Topos zkEVM Demo's version
-- 
+  
 ## Conclusion
 
 You have now experienced the power of the Topos zkEVM on your local environment. This walkthrough has walked you through the generation of proofs, and the subsequent verification of those proofs. As mentioned at the start of the walkthrough, if you want to experiment with your own contract and script, you can replace the hardhat sample project in `DEMO_ROOT/topos-zkevm-demo/local-zkevm/sample-hardhat-project` with your own.
