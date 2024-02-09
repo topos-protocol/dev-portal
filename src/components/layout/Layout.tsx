@@ -19,7 +19,7 @@ import { MdLink } from '../mdx/MdLink';
 import { Heading } from '../Heading';
 import { ZoomImage } from '../mdx/ZoomImage';
 import { MDXProvider } from '@mdx-js/react';
-import { GitHubBlock } from '../GitHubBlock';
+import { GitHubCodeBlock } from '../GitHubCodeBlock';
 import Base from '../base';
 import formatSlugToImageName from '../../utils/formatSlugToImageName';
 
@@ -72,7 +72,7 @@ const Layout: React.FC<PageProps<Object, PageNodeContext>> = ({
     ButtonLink,
     Card,
     CodeBlock,
-    GitHubBlock,
+    GitHubCodeBlock,
     Grid,
     GridItem,
     HighlightBox,
