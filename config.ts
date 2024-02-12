@@ -24,6 +24,7 @@ const config: Config = {
   navigation: [
     {
       label: 'What is Topos?',
+      path: '/',
       content: [
         {
           label: 'Chapter overview: What is Topos?',

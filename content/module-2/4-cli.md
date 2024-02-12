@@ -33,7 +33,7 @@ $ cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.5
 
 In a new `topos-cli.dockerfile`, put:
 
-```Dockerfile [topos-cli.dockerfile]
+```Dockerfile
 FROM rust:1.72.0-bullseye
 
 RUN apt-get update

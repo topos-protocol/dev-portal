@@ -44,8 +44,10 @@
     "katex": "^0.13.24",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
+    "react-collapsed": "^4.1.2",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "sharp": "^0.32.6",
     "watcher": "^2.3.0"
   },
