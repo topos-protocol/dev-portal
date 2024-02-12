@@ -37,12 +37,17 @@ The second chapter of the Topos Developer Portal brings you into contact with th
     </Card>
   </GridItem>
   <GridItem>
-    <Card title="4: Topos CLI" to={'/content/module-2/4-cli.html'}>
+    <Card title="4: Topos zkEVM Demo" to={'/content/module-2/4-topos-zkevm-demo.html'}>
+      Part of the power of Topos is the zkEVM. This unit shows you how to run the topos-zkevm-demo CLI tool in order to experience the power of the zkEVM on your local system.
+    </Card>
+  </GridItem>
+  <GridItem>
+    <Card title="5: Topos CLI" to={'/content/module-2/5-cli.html'}>
       The Topos CLI is frequently mentioned in this chapter – here you will look at it directly. You will install and test the tool that allows you to collectively start and run the different components you have been exploring.
     </Card>
   </GridItem>
   <GridItem>
-    <Card title="5: Topos Testnet phases" to={'/content/module-2/5-testnet.html'}>
+    <Card title="6: Topos Testnet phases" to={'/content/module-2/6-testnet.html'}>
       The Topos public testnet is there for our developer community to deploy apps and experiment with the novel interaction model the Topos protocol enables. It's an early preview of what is coming. In this section we present the upcoming phases to give interested parties and overview of the remaining phases.
     </Card>
   </GridItem>
