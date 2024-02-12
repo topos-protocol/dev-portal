@@ -32,14 +32,14 @@ If you're already familiar with Solidity, you may choose to skip ahead to [Deplo
 
 Before deploying, you first need to create your contract. At the very least, a Solidity contract should start with a license declaration at the top, followed by a ``pragma` statement specifying the compatible Solidity version(s), and then the contract itself. Below is an example of a minimal contract. This contract can be compiled and deployed, although it doesn't perform any specific function.
 
-<GitHubCodeBlock language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-1.sol" lines="1..5" />
+<GitHubCodeBlock title="memory-1.sol" language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-1.sol" lines="1..5" />
 
 [Launch a Remix IDE with this code](https://remix.ethereum.org/topos-protocol/example-code-depot/blob/main/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-1.sol)
 
 
 However, we aim to create a contract that offers interactive capabilities and possesses a simple functionality once deployed. Therefore, let's enhance our contract by introducing storage for a `string` variable and adding a function that enables us to modify the data stored in this string.
 
-<GitHubCodeBlock language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-2.sol" lines="1..10" highlights="5..9" />
+<GitHubCodeBlock title="memory-2.sol" language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-2.sol" lines="1..10" highlights="5..9" />
 
 [Launch a Remix IDE with this code](https://remix.ethereum.org/topos-protocol/example-code-depot/blob/main/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-2.sol)
 
@@ -89,7 +89,7 @@ Entering text into the input box beside the orange store button and pressing it 
 
 However, unrestricted string storage in Solidity poses a risk due to the potential for strings of any size. In a production network scenario, submitting a large string to this contract could lead to prohibitive gas costs. To address this, we'll update the contract to only allow strings shorter than 256 bytes, thereby preventing excessive gas consumption.
 
-<GitHubCodeBlock language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-3.sol" lines="1..11" highlights="8" />
+<GitHubCodeBlock title="memory-3.sol" language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-3.sol" lines="1..11" highlights="8" />
 
 [Launch a Remix IDE with this code](https://remix.ethereum.org/topos-protocol/example-code-depot/blob/main/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory-3.sol)
 
@@ -97,7 +97,7 @@ In Solidity contracts, the `require` statement serves to verify conditions, reve
 
 Having implemented this safety measure, we'll now introduce a line to the contract enabling the retrieval of the stored data.
 
-<GitHubCodeBlock language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory.sol" lines="1..15" highlights="12..14" />
+<GitHubCodeBlock title="memory.sol" language="solidity" org="topos-protocol" repo="example-code-depot" path="/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory.sol" lines="1..15" highlights="12..14" />
 
 [Launch a Remix IDE with this code](https://remix.ethereum.org/topos-protocol/example-code-depot/blob/main/examples/docs.topos.technology/tutorials/deploy-a-contract-on-topos/memory.sol)
 

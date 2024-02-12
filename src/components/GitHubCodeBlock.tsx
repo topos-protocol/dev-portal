@@ -17,6 +17,7 @@ languages.forEach((language) => {
 });
 
 interface GitHubCodeBlockProps {
+  title: string; // The title of the code block.
   language: string; // e.g. solidity, bash, rust, etc.
   org: string; // The GitHub organization name. This is optional if code will not be fetched from GitHub.
   repo: string; // The GitHub repository name. This is optional if code will not be fetched from GitHub.
@@ -133,6 +134,7 @@ export const GitHubCodeBlock: React.FC<
   PropsWithChildren<GitHubCodeBlockProps>
 > = ({
   children,
+  title,
   language = 'text',
   org,
   repo,
@@ -251,94 +253,96 @@ export const GitHubCodeBlock: React.FC<
       }
     };
 
-    console.log('Calling fetchCode()'); 
     fetchCode();
-
   }, []);
 
   return (
-    <div className={twMerge('githubblock')}>
-      <div className={twMerge('header')}>
-        <div className={twMerge('language')}>{`${language}`}</div>
-        <div className={twMerge('spacer')}></div>
-        {!nocopy && (
-          <button
-            onClick={() => {
-              copyToClipboard(code, separators_array, copytrim);
-              setIsCopied(true);
-              setTimeout(() => setIsCopied(false), 1000);
-            }}
-            className={twMerge('button')}
-          >
-            {isCopied ? '🎉 Copied!' : 'Copy'}
-          </button>
-        )}
+    <>
+      {title && (
+        <div className={twMerge('githubblock-title')}>{title}</div>)}
+      <div className={twMerge('githubblock',title ? '' : 'no-title')}>
+        <div className={twMerge('header')}>
+          <div className={twMerge('language')}>{`${language}`}</div>
+          <div className={twMerge('spacer')}></div>
+          {!nocopy && (
+            <button
+              onClick={() => {
+                copyToClipboard(code, separators_array, copytrim);
+                setIsCopied(true);
+                setTimeout(() => setIsCopied(false), 1000);
+              }}
+              className={twMerge('button')}
+            >
+              {isCopied ? '🎉 Copied!' : 'Copy'}
+            </button>
+          )}
+        </div>
+        <div className={twMerge('code')}>
+          {code ? (
+            <Highlight code={code} language={language} theme={themes.nightOwl}>
+              {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                <pre
+                  className={twMerge('code-wrapper', className)}
+                  style={{
+                    ...style,
+                  }}
+                >
+                  {tokens.map((line, i) => (
+                    <div
+                      {...getLineProps({ line, key: i })}
+                      style={{
+                        background: highlights_array(i)
+                          ? '#00f5c426'
+                          : 'transparent',
+                        display: 'block',
+                      }}
+                    >
+                      {!nolinenumbers && (
+                        <div
+                          style={{
+                            marginRight: '1rem',
+                            userSelect: 'none',
+                            float: 'left',
+                            width: '2.5rem',
+                            borderRight: '3px solid #606060',
+                          }}
+                        >
+                          {i + 1}
+                        </div>
+                      )}
+                      {line.map((token, key) => (
+                        <span key={key} {...getTokenProps({ token, key })} />
+                      ))}
+                      {separators_array(i) && (
+                        <div
+                          style={{
+                            borderBottom: '1px solid #606060',
+                            width: '100%',
+                            margin: '0.5rem 0',
+                          }}
+                        ></div>
+                      )}
+                    </div>
+                  ))}
+                </pre>
+              )}
+            </Highlight>
+          ) : (
+            <div className={twMerge('loading')}>
+              Loading{' '}
+              <a href={baseUrl} target="_blank">
+                {baseUrl}
+              </a>
+              ...
+            </div>
+          )}
+        </div>
+        <div className={twMerge('url')}>
+          <a href={link || contentUrl} target={'_blank'}>
+            {link || (path && contentUrl)}
+          </a>
+        </div>
       </div>
-      <div className={twMerge('code')}>
-        {code ? (
-          <Highlight code={code} language={language} theme={themes.nightOwl}>
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <pre
-                className={twMerge('code-wrapper', className)}
-                style={{
-                  ...style,
-                }}
-              >
-                {tokens.map((line, i) => (
-                  <div
-                    {...getLineProps({ line, key: i })}
-                    style={{
-                      background: highlights_array(i)
-                        ? '#00f5c426'
-                        : 'transparent',
-                      display: 'block',
-                    }}
-                  >
-                    {!nolinenumbers && (
-                      <div
-                        style={{
-                          marginRight: '1rem',
-                          userSelect: 'none',
-                          float: 'left',
-                          width: '2.5rem',
-                          borderRight: '3px solid #606060',
-                        }}
-                      >
-                        {i + 1}
-                      </div>
-                    )}
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
-                    {separators_array(i) && (
-                      <div
-                        style={{
-                          borderBottom: '1px solid #606060',
-                          width: '100%',
-                          margin: '0.5rem 0',
-                        }}
-                      ></div>
-                    )}
-                  </div>
-                ))}
-              </pre>
-            )}
-          </Highlight>
-        ) : (
-          <div className={twMerge('loading')}>
-            Loading{' '}
-            <a href={baseUrl} target="_blank">
-              {baseUrl}
-            </a>
-            ...
-          </div>
-        )}
-      </div>
-      <div className={twMerge('url')}>
-        <a href={link || contentUrl} target={'_blank'}>
-          {link || (path && contentUrl)}
-        </a>
-      </div>
-    </div>
+    </>
   );
 };

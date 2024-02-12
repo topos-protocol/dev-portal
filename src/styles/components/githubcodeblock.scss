@@ -1,14 +1,28 @@
+.githubblock-title {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.githubblock.no-title {
+  margin-top: 2rem;
+}
+
 .githubblock {
   @apply bg-code-top;
   border-radius: 0.5rem;
-  margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-top: 0;
   // padding-left: 1.5rem;
 
   .header {
     display: flex;
     position: relative;
     padding-left: 1.5rem;
+    flex-wrap: wrap;
 
     .language {
       background-color: #ffffff;
