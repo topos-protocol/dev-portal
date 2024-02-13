@@ -197,4 +197,4 @@ One thing to mention specifically in relation to the Playground is the [use of t
 
 # Up next
 
-You have now looked at the details of the playground components, one of them being the Topos CLI. In the next section, you will look at the CLI in more depth.
+You have now looked at the details of the playground components. In the next section you will learn how to run the topos-zkevm-demo, which allows you to run and use a zkevm in your local environment.

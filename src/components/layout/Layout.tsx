@@ -19,6 +19,7 @@ import { MdLink } from '../mdx/MdLink';
 import { Heading } from '../Heading';
 import { ZoomImage } from '../mdx/ZoomImage';
 import { MDXProvider } from '@mdx-js/react';
+
 import Base from '../base';
 import formatSlugToImageName from '../../utils/formatSlugToImageName';
 
