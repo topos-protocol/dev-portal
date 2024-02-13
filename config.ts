@@ -26,6 +26,10 @@ const config: Config = {
       label: 'What is Topos?',
       content: [
         {
+          label: 'Getting Started',
+          path: '/',
+        },
+        {
           label: 'Chapter overview: What is Topos?',
           path: '/content/module-1',
         },
