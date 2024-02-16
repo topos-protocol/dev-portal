@@ -116,6 +116,10 @@ const config: Config = {
           label: 'Use the Faucet to Get Testnet Tokens',
           path: '/content/how-to/use-the-faucet.html'
         },
+        {
+          label: 'Deploy a Contract to a Topos Subnet',
+          path: '/content/how-to/deploy-a-contract-to-topos.html'
+        }
       ]
     },
     {

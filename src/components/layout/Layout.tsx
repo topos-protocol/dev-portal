@@ -19,7 +19,7 @@ import { MdLink } from '../mdx/MdLink';
 import { Heading } from '../Heading';
 import { ZoomImage } from '../mdx/ZoomImage';
 import { MDXProvider } from '@mdx-js/react';
-
+import { GitHubCodeBlock } from '../GitHubCodeBlock';
 import Base from '../base';
 import formatSlugToImageName from '../../utils/formatSlugToImageName';
 
@@ -66,22 +66,23 @@ const Layout: React.FC<PageProps<Object, PageNodeContext>> = ({
   const components = {
     Accordion,
     AccordionItem,
-    HighlightBox,
-    YoutubePlayer,
-    TabGroup,
-    TabGroupItem,
-    CodeBlock,
-    Steps,
-    StepItem,
-    Questionnaire,
-    ImageCarousel,
     Banner,
     BannerImage,
     BannerContent,
     ButtonLink,
     Card,
+    CodeBlock,
+    GitHubCodeBlock,
     Grid,
     GridItem,
+    HighlightBox,
+    ImageCarousel,
+    Questionnaire,
+    Steps,
+    StepItem,
+    TabGroup,
+    TabGroupItem,
+    YoutubePlayer,
     ZoomImage,
     h2: (props: any) => <Heading {...props} type="h2" />,
     h3: (props: any) => <Heading {...props} type="h3" />,

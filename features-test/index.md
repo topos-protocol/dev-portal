@@ -189,6 +189,30 @@ for line in fileinput.input(inplace=1):
 ```
 </CodeBlock>
 
+<GitHubCodeBlock org="topos-protocol" repo="topos-playground" path="/src/main.ts" lines="2..13" highlights="7" language="typescript" />
+
+---
+
+<GitHubCodeBlock language="bash" separator="1" nolinenumbers copytrim="^\$ ">
+
+```
+$ topos-zkevm-demo execute
+> demo
+> hardhat run scripts/demo.ts
+
+
+Contract deployed at: 0x512d5c545fa66BaaA187020381876e1E368b5A08
+
+Deployment transaction: 0x602540bfd101d1b02b160fe1fd84cfdb8b0fa35687fc5adc56592b931174c204
+
+Ketchup transaction: 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130 (inserted in block 4)
+
+Mustard transaction: 0x5d98aba30400f5f0cc9c0f2d34f9f4280ec1fca88b177b3c2251ad1ea31a9af3 (inserted in block 4)
+```
+
+</GitHubCodeBlock>
+
+
 <TabGroup>
 <TabGroupItem title="Javascript" active>
 
