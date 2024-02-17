@@ -34,7 +34,7 @@ You can extend your understanding with some practical activities in Chapter 2:
 
 <Accordion>
   <AccordionItem title="Topos Playground">
-    To create a local test network and make your first cross-subnet token transfer, click [here](./module-2/1-topos-playground.html).
+    To create a local test network and make your first cross-subnet token transfer, click [here](./module-2/3-topos-playground.html).
   </AccordionItem>
   <AccordionItem title="Components">
     For a dive into the four key elements of the Topos Playground, click [here](./module-2/3-components.html).

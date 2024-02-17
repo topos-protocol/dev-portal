@@ -9,7 +9,7 @@ In order to interact with the Topos and Incal subnets, tokens are required to pa
 
 ## Prerequisites
 
-To use the Faucet, you must have an address to send the tokens to. We recommend using MetaMask as your wallet, and suggest that you first follow the guide on how to [add the Topos and Incal subnets to MetaMask](/how-to/add-topos-and-incal-to-metamask.html).
+To use the Faucet, you must have an address to send the tokens to. We recommend using MetaMask as your wallet, and suggest that you first follow the guide on how to [add the Topos and Incal subnets to MetaMask](/content/how-to/add-topos-and-incal-to-metamask.html).
 
 ## Use the Faucet
 

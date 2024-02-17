@@ -70,7 +70,7 @@ To submit a certificate `Cert`, the subnet broadcasts a message `m = (Cert, dige
 `digest(S_j)` contains incoming (from the point of view of subnet `S_j`) certificates sent by other subnets since `S_j`'s last certificate.
 </HighlightBox>
 
-The [ICE-FROST](/learn/uci/authentication) signed message `m` eventually reaches all the TCE nodes. After a correct node receives `m`, it verifies the message signature and if correct, it sends an `Echo` message to all nodes in its $\tilde{\mathcal{E}}$ set.
+The [ICE-FROST](/content/module-1/4-protocol.html#threshold-signatures-ice-frost-) signed message `m` eventually reaches all the TCE nodes. After a correct node receives `m`, it verifies the message signature and if correct, it sends an `Echo` message to all nodes in its $\tilde{\mathcal{E}}$ set.
 
 Each correct node issues a `Ready` message to all the nodes in $\tilde{\mathcal{R}}$​ if it has received more than $E$ `Echo` (resp. $R$ `Ready`) messages from $\mathcal{E}$ (resp. $\mathcal{R}$).
 

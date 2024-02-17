@@ -72,7 +72,7 @@ $ npx topos-playground start
 </StepItem>
 <StepItem>
 
-It will first check [your machine](./1-topos-playground.html#prerequisites):
+It will first check [your machine](/content/module-2/3-topos-playground.html#prerequisites):
 
 ```txt
 Starting Topos-Playground...
