@@ -16,7 +16,7 @@ In addition to the Topos Playground, there is another tool for interacting with 
 #### Software
 
 - Linux or MacOS
-- [Docker](https://docs.docker.com/get-docker/_) version 17.06.0 or greater
+- [Docker](https://docs.docker.com/get-docker/) version 17.06.0 or greater
 - [Docker Compose](https://docs.docker.com/compose/install/) version 2.0.0 or greater
 - [NodeJS](https://nodejs.dev/en/) version 16.0.0 or greater
 - [Rust](https://www.rust-lang.org/tools/install) recent nightly (2024)
