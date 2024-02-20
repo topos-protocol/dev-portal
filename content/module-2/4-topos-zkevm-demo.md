@@ -26,23 +26,29 @@ In addition to the Topos Playground, there is another tool for interacting with 
 
 Depending on your NodeJS environment and preferences, there are several ways to install Topos zkEVM Demo.
 
+<TabGroup>
+<TabGroupItem title="npm">
 Our recommended way is to install the CLI using `npm`:
 
 ```bash
 $ npm install -g @topos-protocol/topos-zkevm-demo
 ```
-
+</TabGroupItem>
+<TabGroupItem title="yarn">
 If you are a `yarn` user, you can install the CLI using `yarn`:
 
 ```bash
 $ yarn global add @topos-protocol/topos-zkevm-demo
 ```
-
+</TabGroupItem>
+<TabGroupItem title="npx">
 Alternatively, you can install and run via `npx`:
 
 ```bash
 $ npx @topos-protocol/topos-zkevm-demo
 ```
+</TabGroupItem>
+</TabGroup>
 
 ## Demo Walkthrough
 
@@ -52,7 +58,6 @@ Once the CLI is installed, you are ready to run the demo. The following steps wi
 
 <StepItem>
 ### Verify and install dependencies
-
 The first thing that you will want to do is to run the `topos-zkevm-demo` with the `install` command, which will verify your dependencies and then download all of the other components that are required to run the demo.
 
 Topos zkEVM Demo is built on top of two projects:
