@@ -27,8 +27,8 @@ interface GitHubCodeBlockProps {
   highlights: string; // The lines from the fetched file to highlight. '3..5', '6, 9, 11', etc.
   nofetch: boolean; // If true, the code will not be fetched from GitHub.
   link: string; // The link to display. This overrides the default, which is to construct it from the github information.
-  nocopy: string; // An optional line or range of lines that will not be copied to the clipboard when the copy button is pressed.
-  copytrim: string; // An optional regular expression that will be used to trim the code before it
+  nocopy: boolean; // An optional line or range of lines that will not be copied to the clipboard when the copy button is pressed.
+  copytrim: string; // An optional regular expression that will be used to trim the code before it ia copied.
   separator: string; // A line or lines that will be followed by a visible separator line.
   nolinenumbers: boolean; // If true, line numbers will not be displayed.
 }
@@ -80,10 +80,13 @@ const assembleContentUrl = (
   firstLine = 0,
   lastLine = 9999
 ) => {
+  const formattedPath = `${path}`.startsWith('/') ? path.substring(1) : path;
+  const formattedTag = tag ? `${tag}/` : '';
+
   if (firstLine > 0) {
-    return `https://github.com/${org}/${repo}/blob/${tag}/${path}#L${firstLine}-L${lastLine}`;
+    return `https://github.com/${org}/${repo}/blob/${formattedTag}${formattedPath}#L${firstLine}-L${lastLine}`;
   } else {
-    return `https://github.com/${org}/${repo}/blob/${tag}/${path}`;
+    return `https://github.com/${org}/${repo}/blob/${formattedTag}${formattedPath}`;
   }
 };
 
@@ -144,7 +147,7 @@ export const GitHubCodeBlock: React.FC<
   highlights = '',
   nofetch = false,
   link = null,
-  nocopy = '',
+  nocopy = false,
   copytrim = '',
   separator = '',
   nolinenumbers = false,
@@ -225,12 +228,12 @@ export const GitHubCodeBlock: React.FC<
             finished = true;
           } else {
             finished = true;
-            const parsed_code = trimCode(atob(data.content), lines);
+            const raw_code = atob(data.content);
+            const parsed_code = trimCode(raw_code, lines);
             setCode(parsed_code);
             if (lines != '') {
-              console.log(lines);
               const [_firstLine, _lastLine] = firstAndLastLines(
-                parsed_code,
+                raw_code,
                 lines
               );
               setFirstLine(_firstLine + 1);

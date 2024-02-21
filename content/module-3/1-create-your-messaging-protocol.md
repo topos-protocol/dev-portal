@@ -59,15 +59,7 @@ The `proof` in question is a merkle proof proving the inclusion of a receipt in 
 
 **ERC20Messaging** emits, on a sending subnet, the following `TokenSent` event to detail which cross-subnet ERC20 transfer was requested:
 
-```solidity
-event TokenSent(
-    SubnetId indexed targetSubnetId,
-    string symbol,
-    address tokenAddress,
-    address receiver,
-    uint256 amount
-);
-```
+<GitHubCodeBlock title="TokenSent" language="solidity" org="topos-protocol" repo="topos-smart-contracts" path="/contracts/interfaces/IERC20Messaging.sol" tag="v3.2.0" lines="21..27" highlights="1" />
 
 By passing the index of the corresponding log in the transaction receipt, the **ERC20Messaging** contract instance on the receiving subnet can retrieve the event log, parse it, and get all the data it needs to execute the ERC20 transfer, i.e., mint the right amount of the right token to the right recipient.
 
@@ -109,41 +101,27 @@ The code of the first function is pretty much arbitrary and depends on what you 
 
 3- Emits the **CrossSubnetMessageSent** core event to announce the cross-subnet message
 
-```solidity
-function sendToken(SubnetId targetSubnetId, string calldata symbol, address receiver, uint256 amount) external {
-    if (_toposCoreAddr.code.length == uint256(0)) revert InvalidToposCore();
-    Token memory token = getTokenBySymbol(symbol);
-    _burnTokenFrom(msg.sender, symbol, amount);                           // 1- Burn the requested amount of the requested token
-    emit TokenSent(targetSubnetId, symbol, token.addr, receiver, amount); // 2- Emit the TokenSent event
-    _emitMessageSentEvent(targetSubnetId);                                // 3- Emit the CrossSubnetMessageSent event
-}
-```
+<GitHubCodeBlock title="sendToken" language="solidity" org="topos-protocol" repo="topos-smart-contracts" path="/contracts/examples/ERC20Messaging.sol" tag="v3.2.0" lines="71..77" highlights="4..6" />
 
 </HighlightBox>
 
 Only the last line that emits the **CrossSubnetMessageEvent** is a requirement for all messaging protocols. So if we were to name the first function of **CustomMessaging** `doSomething`, `doSomething` would have the following structure:
 
-```solidity
+<GitHubCodeBlock title="doSomething" language="solidity" highlights="4">
+```
 function doSomething(SubnetId targetSubnetId, ...otherArgs) external {
     ...                                    // 1- Do something
     ...                                    // 2- Emit an event that describes the something
     _emitMessageSentEvent(targetSubnetId); // 3- Emit the CrossSubnetMessageSent event
 }
 ```
+</GitHubCodeBlock>
 
 ### Receiving subnet (2)
 
 Let's now take a look at the second function (`_execute`) signature:
 
-```solidity
-function _execute(
-    uint256[] memory logIndexes,
-    address[] memory logsAddress,
-    bytes[] memory logsData,
-    bytes32[][] memory logsTopics,
-    SubnetId networkSubnetId
-) internal virtual {}
-```
+<GitHubCodeBlock title="_execute" language="solidity" org="topos-protocol" repo="topos-smart-contracts" path="/contracts/topos-core/ToposMessaging.sol" tag="v3.2.0" lines="92..98" highlights="1" />
 
 As detailed before, this function's signature is defined in **ToposMessaging**'s interface and the function is itself called by **ToposMessaging**'s `execute` function, so as a messaging protocol developer, you need not care about how all these arguments are retrieved. You only need to care about how you use them.
 
@@ -172,13 +150,15 @@ Should you have other logs needed to decode in order to execute the cross-subnet
 
 Now that you have retrieved the right log index, you can retrieve the rest of the log's data you are interested in:
 
-```solidity
+<GitHubCodeBlock title="retrieve log data" language="solidity" highlights="2">
+```
 # pseudo-code
 myLogIndex = logIndexes[0] // myLog == 4
 logsAddress[myLogIndex]    // This is the address of the contract which emitted that log
 logsData[myLogIndex]       // This is the data field of that log
 logsTopics[myLogIndex]     // This is the topics field of that log
 ```
+</GitHubCodeBlock>
 
 From the address of the contract which emitted the log, you can verify that the address is the one you expected. From the data field, you can retrieve all the data that semantically describe the cross-subnet message. Eventually, from the topics you can retrieve all the indexed arguments of the log.
 
@@ -186,61 +166,46 @@ From the address of the contract which emitted the log, you can verify that the 
 
 **ERC20Messaging**'s `_execute` function is coded as follows:
 
-```solidity
-function _execute(
-    uint256[] memory logIndexes,
-    address[] memory logsAddress,
-    bytes[] memory logsData,
-    bytes32[][] memory logsTopics,
-    SubnetId networkSubnetId
-) internal override {
-    uint256 tokenSentEventIndex = logIndexes[0];
-    if (logsAddress[tokenSentEventIndex] != address(this)) revert InvalidOriginAddress();
+<GitHubCodeBlock title="_execute" language="solidity" org="topos-protocol" repo="topos-smart-contracts" path="/contracts/examples/ERC20Messaging.sol" tag="v3.2.0" lines="119..140" highlights="9,10,14,15,17..21" />
 
-    bytes32 targetSubnetId = logsTopics[tokenSentEventIndex][1];
-    if (SubnetId.unwrap(networkSubnetId) != targetSubnetId) revert InvalidSubnetId();
-
-    (string memory symbol, , address receiver, uint256 amount) = abi.decode(
-        logsData[tokenSentEventIndex],
-        (string, address, address, uint256)
-    );
-    _mintToken(symbol, receiver, amount);
-}
-```
-
-<br/>
 As we can see, it starts by retrieving the expected index of the `TokenSent` event.
 
-```solidity
+<GitHubCodeBlock language="solidity" link="https://github.com/topos-protocol/topos-smart-contracts/blob/v3.2.0/contracts/examples/ERC20Messaging.sol#L127" nocopy>
+```
 uint256 tokenSentEventIndex = logIndexes[0];
 ```
+</GitHubCodeBlock>
+
 Again, we know that the event is at index `0` because it is the only event we need to decode the ERC20 transfer that we need to execute on the receiving subnet, and because **ERC20Messaging**'s smart contract and frontend application were developed to work with that event only.
 
-<br/>
 Then, from the right index, the address of the contract that emitted the `TokenSent` event is retrieved and compared to the current address (the address of the **ERC20Messaging** smart contract instance being used). This is because **ERC20Messaging** expects all instances of its contract to be deployed at the same address on all subnets.
 
-```solidity
+<GitHubCodeBlock language="solidity" link="https://github.com/topos-protocol/topos-smart-contracts/blob/v3.2.0/contracts/examples/ERC20Messaging.sol#L128" nocopy>
+```
 if (logsAddress[tokenSentEventIndex] != address(this)) revert InvalidOriginAddress();
 ```
+</GitHubCodeBlock>
 
-<br/>
 Next, from the right index and the corresponding array of topics, the target subnet id is retrieved. Index `1` is used because the first topic of an EVM event is the event signature, and the next are the indexed arguments of the event and `targetSubnetId` is the first and only indexed argument of the `TokenSent` event.
 
-```solidity
+<GitHubCodeBlock language="solidity" link="https://github.com/topos-protocol/topos-smart-contracts/blob/v3.2.0/contracts/examples/ERC20Messaging.sol#L132-L133" nocopy>
+```
 bytes32 targetSubnetId = logsTopics[tokenSentEventIndex][1];
 if (SubnetId.unwrap(networkSubnetId) != targetSubnetId) revert InvalidSubnetId();
 ```
+</GitHubCodeBlock>
 
-<br/>
 Finally, the data field is decoded and the data to be used to execute the cross-subnet ERC20 transfer is retrieved (token symbol, receiver address, and amount), before the transfer gets executed by minting the token.
 
-```solidity
+<GitHubCodeBlock language="solidity" link="https://github.com/topos-protocol/topos-smart-contracts/blob/v3.2.0/contracts/examples/ERC20Messaging.sol#L135-L139" nocopy>
+```
 (string memory symbol, , address receiver, uint256 amount) = abi.decode(
     logsData[tokenSentEventIndex],
     (string, address, address, uint256)
 );
 _mintToken(symbol, receiver, amount);
 ```
+</GitHubCodeBlock>
 
 </HighlightBox>
 
