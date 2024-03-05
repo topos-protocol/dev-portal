@@ -30,23 +30,34 @@ Depending on your NodeJS environment and preferences, there are several ways to 
 <TabGroupItem title="npm">
 Our recommended way is to install the CLI using `npm`:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ ">
+```
 $ npm install -g @topos-protocol/topos-zkevm-demo
 ```
+</GitHubCodeBlock>
+
 </TabGroupItem>
+
 <TabGroupItem title="yarn">
 If you are a `yarn` user, you can install the CLI using `yarn`:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ ">
+```
 $ yarn global add @topos-protocol/topos-zkevm-demo
 ```
+</GitHubCodeBlock>
+
 </TabGroupItem>
+
 <TabGroupItem title="npx">
 Alternatively, you can install and run via `npx`:
 
-```bash
+<GitHubCodeBlock language="bash"  nolinenumbers="true" copytrim="^\$ ">
+```
 $ npx @topos-protocol/topos-zkevm-demo
 ```
+</GitHubCodeBlock>
+
 </TabGroupItem>
 </TabGroup>
 
@@ -67,9 +78,11 @@ Topos zkEVM Demo is built on top of two projects:
 
 Both of these will be installed for you.
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos-zkevm-demo install
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-install.gif" alt="Running the topos-zkevm-demo install command" />
 
@@ -84,9 +97,12 @@ $ topos-zkevm-demo install
 
 The demo utilizes Erigon, which is an implementation of Ethereum, to provide a local development chain. To start it, run:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos-zkevm-demo start
 ```
+</GitHubCodeBlock>
+
 </StepItem>
 
 <StepItem>
@@ -98,20 +114,19 @@ Optionally, you can replace the contract and the script with your own.
 
 When you are ready to execute the demo script, run:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos-zkevm-demo execute
 ```
+</GitHubCodeBlock>
 
 The command will output whatever is logged in the demo script, which by default is the address of the deployed contract, the hashes of the two transactions that were sent, as well as the block that included them (by default, the script will have the two transactions included in the same block).
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ " separator="1" nocopy="2..12">
+```
 $ topos-zkevm-demo execute
-```
-
-Outputs:
-```
 > demo
 > hardhat run scripts/demo.ts
 
@@ -124,6 +139,7 @@ Ketchup transaction: 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2
 
 Mustard transaction: 0x5d98aba30400f5f0cc9c0f2d34f9f4280ec1fca88b177b3c2251ad1ea31a9af3 (inserted in block 4)
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-execute.gif" alt="Running the topos-zkevm-demo execute command" />
 
@@ -133,7 +149,7 @@ From now on, the rest of the demo scenario will be divided into two roles: the `
 Don't close or clear the terminal window where you ran the `execute` command, as you will need the output of the script to proceed with the next steps.
 </HighlightBox>
 </StepItem>
-
+  
 <StepItem>
 ### [Prover] Generate a merkle proof
 
@@ -141,7 +157,7 @@ As a prover, your intention is the following: from the two transactions that are
 
 To achieve this, we need to send two proofs to the `verifier`:
 
-- a **merkle proof**: an inclusion proof of your transaction's receipt in the transaction's block's receipt trie
+- a **merkle proof**: an inclusion proof of your transaction's receipt in the transaction's block receipt trie
 - a **zk-proof**: a zero-knowledge (zk) validity proof that ensures that the state transition of the block is computationally valid
 
 By verifying the _merkle proof_, the `verifier` can verify that your transaction is part of a greater set of transactions (a set that remains unknown to the `verifier`), and by verifying the `zk-proof`, the `verifier` can ensure that this greater set of transactions is computationally valid. Altogether, the verifier will verify that your transaction is part of a valid block, hence is a valid transaction.
@@ -152,13 +168,16 @@ Note: The merkle proof is based on a transaction's receipt instead of the transa
 
 Let's start by generating the merkle proof for your transaction. The `tx_hash` should be a transaction hash, such as the `Ketchup transaction` hash that was output by the `execute` command.
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ |<tx_hash>">
+```
 $ topos-zkevm-demo generate merkle-proof <tx_hash>
 ```
+</GitHubCodeBlock>
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ " separator="1" nocopy="2..10">
+```
 $ topos-zkevm-demo generate merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130
 node dist/main generate merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130
 
@@ -170,6 +189,7 @@ node dist/main generate merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6
 
 0xf851a02d247ca1770e3221e8aecf9d04fc9b6f7ff07361715c71ef8703bf24c7905d4580808080808080a0cfa9df4025f175e0c4338efc950dc2e30214a08e8ba6940226a97fd977b156b08080808080808080,0xf9011130b9010d02f90109018301155cb9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-generate-merkle-proof.gif" alt="Running the topos-zkevm-demo generate merkle proof" />
 
@@ -186,18 +206,22 @@ Note: When copying the merkle proof, make sure to copy the whole list.
 
 From the number of the block which includes your two transactions (reminder: the block number is output by the [execute](#3-execute-the-demo-script) command), you can generate a zk-proof of the block:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ |<block_number>">
+```
 $ topos-zkevm-demo generate zk-proof <block_number>
 ```
+</GitHubCodeBlock>
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" separator="1" nocopy="2..4" copytrim="^\$ ">
+```
 $ topos-zkevm-demo generate zk-proof 4
 Proving block 4...
 
 Successfully generated proof for block 4! (proof available at DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof)!
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-generate-zk-proof.gif" alt="Running the topos-zkevm-demo generate zk proof" />
 
@@ -217,9 +241,11 @@ You will start by verifying the provided merkle proof.
 
 To do this, you will execute the following command:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ |<tx_hash> <merkle_root> <receipt_trie_root>">
+```
 $ topos-zkevm-demo verify merkle-proof <tx_hash> <merkle_root> <receipt_trie_root>
 ```
+</GitHubCodeBlock>
 
 You might have seen that when we use the command `verify merkle-proof`, it asks for a `receipt_trie_root` which we haven't talked about yet. Let's clear that up: a merkle proof is basically a way to show that a specific piece of data (the leaf) is part of a larger database (the trie) by using a series of steps (a path) that lead to a single, final piece of information (the trie root). This path is made up of several pieces of data (nodes or hashes) that, when put together in a certain way, create a unique identifier (hash) that matches the trie root. This match proves that the data we started with is definitely in the database. To check if this is true (to verify a merkle proof), you need three things: the starting piece of data (the leaf), the series of steps (the proof), and the final piece of information (the trie root).
 
@@ -229,19 +255,23 @@ The `verify merkle-proof` command internally computes the right leaf for you, fr
 
 So, first thing first, you need to retrieve the receipt trie root:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ |<tx_hash>">
+```
 $ topos-zkevm-demo util get-receipt-trie-root <tx_hash>
 ```
+</GitHubCodeBlock>
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" separator="1" nocopy="2..5" copytrim="^\$ ">
+```
 $ topos-zkevm-demo util get-receipt-trie-root 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130
 > get-receipt-trie-root
 > hardhat get-receipt-trie-root 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130
 
 0x11ef2192f0c9aa092d69b9acf82085f384f172188cc321da94566dc9d33a3b18
 ```
+</GitHubCodeBlock>
 
 <HighlightBox type="info">
 Internally, the `util get-receipt-trie-root` command fetches the block which includes the passed transaction hash, and outputs the receipt trie root from its header.
@@ -251,7 +281,8 @@ Now, you can verify the merkle proof.
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" separator="1" nocopy="2..9" copytrim="^\$ ">
+```
 $ topos-zkevm-demo verify merkle-proof 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130 0xf851a02d247ca1770e3221e8aecf9d04fc9b6f7ff07361715c71ef8703bf24c7905d4580808080808080a0cfa9df4025f175e0c4338efc950dc2e30214a08e8ba6940226a97fd977b156b08080808080808080,0xf9011130b9010d02f90109018301155cb9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0 0x11ef2192f0c9aa092d69b9acf82085f384f172188cc321da94566dc9d33a3b18
 Verifying merkle-proof for transaction: 0x785102ca9881b284588452cd90685d2c713cf61f6e4f3fcc8451bb6f2a571130
 
@@ -262,6 +293,7 @@ Verifying merkle-proof for transaction: 0x785102ca9881b284588452cd90685d2c713cf6
 
 ✅ Merkle proof has been verified
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-verify-merkle-proof.gif" alt="Running the topos-zkevm-demo verify merkle proof" />
 
@@ -272,18 +304,22 @@ Verifying merkle-proof for transaction: 0x785102ca9881b284588452cd90685d2c713cf6
 
 Now that you have verified that the provided transaction is indeed part of a state transition (a block), you can verify that it is valid by verifying the block's zk-proof:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" copytrim="^\$ |<path_to_zk_proof>">
+```
 $ topos-zkevm-demo verify zk-proof <path_to_zk_proof>
 ```
+</GitHubCodeBlock>
 
 For example:
 
-```bash
+<GitHubCodeBlock language="bash" nolinenumbers="true" separator="1" nocopy="2..4" copytrim="^\$ ">
+```
 $ topos-zkevm-demo verify zk-proof DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof
 Verifying zk-proof: DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof
 
 ✅ DEMO_ROOT/topos-zkevm-demo/zero-bin/proofs/b00004.zkproof has been verified
 ```
+</GitHubCodeBlock>
 
 <img src="/images/topos-zkevm-demo-verify-zk-proof.gif" alt="Running the topos-zkevm-demo verify zk proof" />
 
