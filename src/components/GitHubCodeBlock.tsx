@@ -27,7 +27,7 @@ interface GitHubCodeBlockProps {
   highlights: string; // The lines from the fetched file to highlight. '3..5', '6, 9, 11', etc.
   nofetch: boolean; // If true, the code will not be fetched from GitHub.
   link: string; // The link to display. This overrides the default, which is to construct it from the github information.
-  nocopy: boolean; // An optional line or range of lines that will not be copied to the clipboard when the copy button is pressed.
+  nocopy: boolean|string; // An optional line or range of lines that will not be copied to the clipboard when the copy button is pressed.
   copytrim: string; // An optional regular expression that will be used to trim the code before it ia copied.
   separator: string; // A line or lines that will be followed by a visible separator line.
   nolinenumbers: boolean; // If true, line numbers will not be displayed.
@@ -48,15 +48,24 @@ const trimCopiedCode = (code, separators_array, copytrim) => {
     code = code.replace(re, '');
   }
 
-  if (separators_array(0)) {
-    code = code.split('\n').slice(0, separators_array(0));
-  }
+  // if (separators_array(0)) {
+  //   code = code.split('\n').slice(0, separators_array(0));
+  // }
 
   return code;
 };
 
-const copyToClipboard = (str, separators_array, copytrim) => {
-  const codeToCopy = trimCopiedCode(str, separators_array, copytrim);
+const copyToClipboard = (str, separators_array, copytrim, nocopy) => {
+  if (nocopy == true) {
+    return;
+  }
+
+  let codeToCopy = trimCopiedCode(str, separators_array, copytrim);
+
+  if (nocopy) {
+    codeToCopy = invertedTrimCode(codeToCopy, nocopy);
+  }
+
   if (navigator.clipboard) {
     navigator.clipboard.writeText(codeToCopy).then(
       function () {
@@ -133,6 +142,15 @@ const trimCode = (code, lines) => {
     .join('\n');
 };
 
+const invertedTrimCode = (code, lines) => {
+  const excludedLines = calculateLines(lines);
+
+  return code
+    .split('\n')
+    .filter((_, i) => !excludedLines(i))
+    .join('\n');
+}
+
 export const GitHubCodeBlock: React.FC<
   PropsWithChildren<GitHubCodeBlockProps>
 > = ({
@@ -168,7 +186,8 @@ export const GitHubCodeBlock: React.FC<
         /^<div class="gatsby-highlight" data-language="text"><pre class="language-\w+"><code class="language-text">/,
         ''
       )
-      .replace(/<\/code><\/pre><\/div>$/, '') || '';
+      .replace(/<\/code><\/pre><\/div>$/, '')
+      .replaceAll(/&lt;/g,'<') || '';
 
   const [code, setCode] = useState(
     !nofetch && org && repo && path ? '' : childrenCode
@@ -267,10 +286,10 @@ export const GitHubCodeBlock: React.FC<
         <div className={twMerge('header')}>
           <div className={twMerge('language')}>{`${language}`}</div>
           <div className={twMerge('spacer')}></div>
-          {!nocopy && (
+          {nocopy != true && (
             <button
               onClick={() => {
-                copyToClipboard(code, separators_array, copytrim);
+                copyToClipboard(code, separators_array, copytrim, nocopy);
                 setIsCopied(true);
                 setTimeout(() => setIsCopied(false), 1000);
               }}
