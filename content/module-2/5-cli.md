@@ -11,11 +11,11 @@ The Topos CLI has already been mentioned many times in this chapter. Now it is t
 
 ## Install from the source
 
-You will fetch and build the [Topos CLI](https://github.com/topos-protocol/topos) from the source. This may take some time; alternatively, you can [download and run a released version directly](https://github.com/topos-protocol/topos/releases/). This section assumes that you work with [version 0.0.5](https://github.com/topos-protocol/topos/releases/tag/v0.0.5).
+You will fetch and build the [Topos CLI](https://github.com/topos-protocol/topos) from the source. This may take some time; alternatively, you can [download and run a released version directly](https://github.com/topos-protocol/topos/releases/). This section assumes that you work with [version 0.0.11](https://github.com/topos-protocol/topos/releases/tag/v0.0.11).
 
 <HighlightBox type="info" title="Make sure to install Rust Toolchain">
 
-The [Topos CLI](https://github.com/topos-protocol/topos) is written in Rust, so you will need to have a [Rust Toolchain installed and ready](https://rustup.rs). Alternatively, you can use a [Rust Docker image](https://hub.docker.com/layers/library/rust/1.72.0-bullseye/images/sha256-e431500c0bd21997da93fbb6cc3a20833f1307306e18982eeb503b6f432ee9f5) to achieve the same.
+The [Topos CLI](https://github.com/topos-protocol/topos) is written in Rust, so you will need to have a [Rust Toolchain installed and ready](https://rustup.rs). Alternatively, you can use a [Rust Docker image](https://hub.docker.com/layers/library/rust/1.76.0-bookworm/images/sha256-e431500c0bd21997da93fbb6cc3a20833f1307306e18982eeb503b6f432ee9f5) to achieve the same.
 
 </HighlightBox>
 
@@ -24,30 +24,36 @@ When you are ready, use `cargo` to fetch and compile the CLI:
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
-$ cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.5
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
 ```
+$ cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.11
+```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
 In a new `topos-cli.dockerfile`, put:
 
-```Dockerfile
-FROM rust:1.72.0-bullseye
+<GitHubCodeBlock language="docker">
+```
+FROM rust:1.76.0-bookworm
 
 RUN apt-get update
 RUN apt-get install --yes protobuf-compiler llvm-dev libclang-dev clang
-RUN cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.5
+RUN cargo install topos --git https://github.com/topos-protocol/topos --tag v0.0.11
 
 ENTRYPOINT [ "topos" ]
 ```
+</GitHubCodeBlock>
 
 Then create the image:
 
-```sh
-$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.5
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
 ```
+$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.11
+```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -59,23 +65,28 @@ You can check your installation with:
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos --help
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
-$ docker run --rm topos-cli:v0.0.5 --help
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
 ```
+$ docker run --rm topos-cli:v0.0.11 --help
+```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
 
 This will show you all the available commands:
 
-```txt
+<GitHubCodeBlock language="text" nocopy="true" nolinenumbers="true">
+```
 Topos CLI
 
 Usage: topos [OPTIONS] <COMMAND>
@@ -95,24 +106,28 @@ Options:
       --home <HOME>  Home directory for the configuration [env: TOPOS_HOME=] [default: /home/user/.config/topos]
   -h, --help         Print help
 ```
+</GitHubCodeBlock>
 
 In order to test the functionality presented here, the Topos CLI will need to download and install the `polygon-edge` binary. Move to a new directory that will be your workspace for this exercise, then:
 
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos setup subnet
 $ export TOPOS_POLYGON_EDGE_BIN_PATH=$(pwd)
 $ export TOPOS_HOME=~/.config/topos/
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
 Add to your `topos-cli.dockerfile`:
 
-```diff-Dockerfile
+<GitHubCodeBlock language="docker" nolinenumbers="true" copytrim="^\+ *" highlights="3..7" nocopy="1,2,8,9">
+```
     RUN cargo install topos --git https://github.com/topos-protocol/topos --branch main
 
 +   ENV TOPOS_HOME=/root/.config/topos/
@@ -123,12 +138,15 @@ Add to your `topos-cli.dockerfile`:
 
     ENTRYPOINT [ "topos" ]
 ```
+</GitHubCodeBlock>
 
 After that, you need to rebuild the image. This should be fast, as it only runs these additional steps:
 
-```sh
-$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.5
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
 ```
+$ docker build . -f topos-cli.dockerfile -t topos-cli:v0.0.11
+```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -138,17 +156,21 @@ By default, the Topos CLI downloads the most recent binary into the current dire
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos setup subnet --help
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
-$ docker run --rm \
-    topos-cli:v0.0.5 setup subnet --help
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
 ```
+$ docker run --rm \
+    topos-cli:v0.0.11 setup subnet --help
+```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -170,25 +192,30 @@ Create your first node, and name it `val-alice`:
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos node init --name val-alice
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
-    topos-cli:v0.0.5 node init --name val-alice
+    topos-cli:v0.0.11 node init --name val-alice
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
 
 This will create some local folders for a validator node with the alias `val_alice` and the three following keys:
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 .config/topos/node/val-alice
 ├── config.toml
 ├── consensus
@@ -197,12 +224,15 @@ This will create some local folders for a validator node with the alias `val_ali
 └── libp2p
     └── libp2p.key
 ```
+</GitHubCodeBlock>
 
 The command also warned you that these keys, which should be secret, are in fact stored unencrypted on disk:
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 [WARNING: INSECURE LOCAL SECRETS - SHOULD NOT BE RUN IN PRODUCTION]
 ```
+</GitHubCodeBlock>
 
 Another file that has been created is `config.toml`. You will use its content in the next step when you start a node, and it is worth looking at in more detail.
 
@@ -210,7 +240,8 @@ Another file that has been created is `config.toml`. You will use its content in
 
 The `config.toml` is the main configuration file. Have a look at the fields:
 
-```toml
+<GitHubCodeBlock language="toml">
+```
 [base]
 name = "val-alice"
 role = "validator"
@@ -225,6 +256,7 @@ graphql-api-addr = "0.0.0.0:4030"
 grpc-api-addr = "0.0.0.0:1340"
 metrics-api-addr = "0.0.0.0:3000"
 ```
+</GitHubCodeBlock>
 
 In the `config.toml`, some of the scopes are necessary (`base` and `edge`) while others are optional (`tce`):
 
@@ -246,18 +278,22 @@ Generate a config for a sequencer node with the alias `seq-bob`:
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos node init --name seq-bob --role sequencer
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
-    topos-cli:v0.0.5 node init --name seq-bob --role sequencer
+    topos-cli:v0.0.11 node init --name seq-bob --role sequencer
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -276,19 +312,23 @@ In order to start a node locally for the Topos Subnet, you will need to fetch th
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ wget -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/19dbc24e9b2405e7562f63d4032450e6/raw/12499fdc40980209c7acd2146ee84c779dbe9e4d/genesis.json
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker run --rm \
     -v $(pwd)/.config:/root/.config \
     --entrypoint wget \
-    topos-cli:v0.0.5 -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/19dbc24e9b2405e7562f63d4032450e6/raw/12499fdc40980209c7acd2146ee84c779dbe9e4d/genesis.json
+    topos-cli:v0.0.11 -P $TOPOS_HOME/subnet/topos/ https://gist.githubusercontent.com/gruberb/19dbc24e9b2405e7562f63d4032450e6/raw/12499fdc40980209c7acd2146ee84c779dbe9e4d/genesis.json
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -302,9 +342,11 @@ If you are running with Docker, first you need to create the network on which yo
 <TabGroup>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker network create net-topos-subnet
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 </TabGroup>
@@ -314,19 +356,23 @@ When launching a node with the `node` subcommand, you can **specify which node c
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos node up --name val-alice
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker run --rm -it \
     -v $(pwd)/.config:/root/.config \
     --network net-topos-subnet \
-    topos-cli:v0.0.5 node up --name val-alice
+    topos-cli:v0.0.11 node up --name val-alice
 ```
+</GitHubCodeBlock>
 
 Do not forget to launch it inside the `net-topos-subnet` network. Be sure to use `-it` so that you can interrupt it with <kbd>CTRL-C</kbd>.
 
@@ -338,19 +384,23 @@ This will fetch the config generated for the validator node and start a node wit
 <TabGroup>
 <TabGroupItem title="Local" active>
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ topos node up --name seq-bob
 ```
+</GitHubCodeBlock>
 
 </TabGroupItem>
 <TabGroupItem title="Docker">
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ docker run --rm -it \
     -v $(pwd)/.config:/root/.config \
     --network net-topos-subnet \
-    topos-cli:v0.0.5 node up --name seq-bob
+    topos-cli:v0.0.11 node up --name seq-bob
 ```
+</GitHubCodeBlock>
 
 As before, do not forget to launch it inside the `net-topos-subnet` network so that it can contact `val-alice`.
 
