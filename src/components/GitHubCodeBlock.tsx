@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Highlight, Prism, themes } from 'prism-react-renderer';
+import 'prismjs/plugins/diff-highlight/prism-diff-highlight';
 import rangeParser from 'parse-numeric-range';
 import { twMerge } from 'tailwind-merge';
 import { githubToken } from '../../githubToken';
 
 (typeof global !== 'undefined' ? global : window).Prism = Prism;
 
-const languages = ['solidity', 'bash'];
+const languages = ['bash', 'diff', 'docker', 'shell-session', 'solidity', 'toml', 'yaml'];
 
 const asyncImport = async (language) => {
   await import(`prismjs/components/prism-${language}`);
@@ -42,25 +43,21 @@ const calculateLines = (raw) => {
   }
 };
 
-const trimCopiedCode = (code, separators_array, copytrim) => {
+const trimCopiedCode = (code, copytrim) => {
   if (copytrim) {
-    const re = new RegExp(copytrim, 'g');
+    const re = new RegExp(copytrim, 'gm');
     code = code.replace(re, '');
   }
-
-  // if (separators_array(0)) {
-  //   code = code.split('\n').slice(0, separators_array(0));
-  // }
 
   return code;
 };
 
-const copyToClipboard = (str, separators_array, copytrim, nocopy) => {
+const copyToClipboard = (str, copytrim, nocopy) => {
   if (nocopy == true) {
     return;
   }
 
-  let codeToCopy = trimCopiedCode(str, separators_array, copytrim);
+  let codeToCopy = trimCopiedCode(str, copytrim);
 
   if (nocopy) {
     codeToCopy = invertedTrimCode(codeToCopy, nocopy);
@@ -195,11 +192,14 @@ export const GitHubCodeBlock: React.FC<
 
   const baseUrl = assembleContentUrl(org, repo, tag, path);
 
+  if (nocopy === "true") {
+    nocopy = true;
+  }
+
   useEffect(() => {
     console.log('useEffect() called');
 
     const doFetch = async (url, attributes) => {
-      console.log('doFetch() called');
       console.log(`url: ${url}`);
       console.log(`attributes: ${JSON.stringify(attributes)}`);
       return await fetch(url, attributes)
@@ -216,8 +216,6 @@ export const GitHubCodeBlock: React.FC<
           }
         });
     };
-
-    console.log('doFetch() defined');
 
     const fetchCode = async () => {
       if (!nofetch && org && repo && path) {
@@ -289,7 +287,7 @@ export const GitHubCodeBlock: React.FC<
           {nocopy != true && (
             <button
               onClick={() => {
-                copyToClipboard(code, separators_array, copytrim, nocopy);
+                copyToClipboard(code, copytrim, nocopy);
                 setIsCopied(true);
                 setTimeout(() => setIsCopied(false), 1000);
               }}
@@ -304,7 +302,7 @@ export const GitHubCodeBlock: React.FC<
             <Highlight code={code} language={language} theme={themes.nightOwl}>
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre
-                  className={twMerge('code-wrapper', className)}
+                  className={twMerge('code-wrapper', className, 'diff-highlight')}
                   style={{
                     ...style,
                   }}
