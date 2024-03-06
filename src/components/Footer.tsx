@@ -19,7 +19,8 @@ export const Footer: React.FC = () => {
             </ul>
           </nav>
         )}
-        <span>© 2023 All rights reserved zk Foundation</span>
+        <span>© 2024 All rights reserved zk Foundation</span>
+        <span style={{fontSize: "0.85em"}}>Build {process.env.GATSBY_GIT_SHA}↦{process.env.GATSBY_BUILD_DATE}</span>
       </div>
     </footer>
   );
