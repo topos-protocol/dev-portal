@@ -55,6 +55,8 @@ export const Head = ({ pageContext }: PageNode) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={config.twitterName} />
       <meta name="og:site_name" content={config.title} />
+      <meta name="publish-date" content={process.env.GATSBY_BUILD_DATE} />
+      <meta name="version" content={process.env.GATSBY_GIT_SHA} />
     </>
   );
 };
