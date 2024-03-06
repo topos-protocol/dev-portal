@@ -50,31 +50,38 @@ Minimum required versions:
 
 Once you have the necessary software on your machine, run:
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ npm install -g @topos-protocol/topos-playground@0.1.0 --save-dev --save-exact
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 <StepItem>
 
 After the installation is complete, check your installation:
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ npx topos-playground --help
 ```
+</GitHubCodeBlock>
 
 Now you can start the Playground:
 
-```sh
+<GitHubCodeBlock language="shell-session" nolinenumbers="true" copytrim="^\$ ">
+```
 $ npx topos-playground start
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 <StepItem>
 
 It will first check [your machine](./1-topos-playground.html#prerequisites):
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 Starting Topos-Playground...
 
 Verifying dependency installation...
@@ -83,13 +90,15 @@ Verifying dependency installation...
 ✅ Node.js -- Version: 19.6.0
 ✅ Dependency checks completed!
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 <StepItem>
 
 It will then clone the _local network_, _dApp_ and _executor service_ repositories and set up the environment parameters:
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 ✅ Working directory exists
 
 Cloning repositories...
@@ -103,13 +112,15 @@ Copying .env files across repositories...
 ✅ .env.executor-service copied
 ✅ .env.secrets copied
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 <StepItem>
 
 Eventually, it will start many components:
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 Running the ERC20 messaging infra...
 ✅ Subnets & TCE are running
 
@@ -128,13 +139,15 @@ Running the dApp Frontend...
 ✅ Static files are built
 ✅ Web server is running
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 <StepItem>
 
 If everything works correctly, you should see:
 
-```txt
+<GitHubCodeBlock language="text" nolinenumbers="true" nocopy="true">
+```
 🔥 Everything is done! 🔥
 
 🚀 Start sending ERC20 tokens across subnet by accessing the dApp Frontend at http://localhost:3001
@@ -142,6 +155,7 @@ If everything works correctly, you should see:
 ℹ️  Ctrl/cmd-c will shut down the dApp Frontend and the Executor Service BUT will keep subnets and the TCE running (use the clean command to shut them down)
 ℹ️  Logs were written to ~/.local/state/topos-playground/logs/log-5c63e885-129b-4941-b304-bdae3b780ac5.log
 ```
+</GitHubCodeBlock>
 
 </StepItem>
 </Steps>
