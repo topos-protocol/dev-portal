@@ -19,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={cn(
-        'rounded bg-gradient-to-tr from-action-reg to-button-linear-end px-6 py-2 font-bold text-white transition-all hover:from-button-hover hover:to-button-hover active:from-button-active active:to-button-active',
+        'rounded bg-gradient-to-tr from-button-hover to-button-linear-end px-6 py-2 font-bold text-white transition-all hover:from-button-linear-end hover:to-button-hover active:from-button-active active:to-button-active',
         className
       )}
       onClick={onClick}

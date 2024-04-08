@@ -12,7 +12,7 @@
 }
 
 .githubblock {
-  @apply bg-code-top;
+  @apply bg-ghcode-action-bg;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   margin-top: 0;
@@ -25,7 +25,7 @@
     flex-wrap: wrap;
 
     .language {
-      background-color: #ffffff;
+      @apply bg-ghcode-language-bg;
       margin-right: 1rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -53,7 +53,8 @@
       margin-top: 0.5rem;
       margin-left: 1.0rem;
       padding: 8px 12px;
-      background-color: #00f5c426;
+      // background-color: #00f5c426;
+      @apply bg-ghcode-button;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -89,8 +90,7 @@
   }
 
   .code {
-    // @apply bg-code-top;
-    @apply bg-neutral-500/10;
+    @apply bg-dark-bg;
     overflow: hidden;
     border-radius: 0.5rem;
 
@@ -108,7 +108,8 @@
 
   .loading {
     margin: 1.5rem 0 1.5rem 1.5rem;
-    color: #bdbdbd;
+    @apply text-ghcode-loading;
+    // color: #bdbdbd;
   }
 }
 

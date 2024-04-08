@@ -197,16 +197,10 @@ export const GitHubCodeBlock: React.FC<
   }
 
   useEffect(() => {
-    console.log('useEffect() called');
-
     const doFetch = async (url, attributes) => {
-      console.log(`url: ${url}`);
-      console.log(`attributes: ${JSON.stringify(attributes)}`);
       return await fetch(url, attributes)
         .then((response) => response.json())
         .then((data) => {
-          console.log('retrieved....')
-          console.log(data);
           if (data?.message?.startsWith('API rate limit exceeded')) {
             return undefined;
           } else if (data.message == 'Not Found') {
@@ -227,19 +221,13 @@ export const GitHubCodeBlock: React.FC<
 
         while (!finished && number_of_attempts < 2) {
           if (number_of_attempts > 0) {
-            console.log('Retrying with authentication...');
             attributes.headers['Authorization'] = `token ${githubToken}`;
             attributes.headers['X-GitHub-Api-Version'] = '2022-11-28';
           }
 
-          console.log(
-            `fetching with attributes: ${JSON.stringify(attributes)}`
-          );
           const url = `https://api.github.com/repos/${org}/${repo}/contents/${path}?ref=${tag}`;
           const data = await doFetch(url, attributes);
-          console.log('got data....')
           if (data === undefined) {
-            console.log('API rate limit exceeded');
             finished = false;
           } else if (data === false) {
             finished = true;

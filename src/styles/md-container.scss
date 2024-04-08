@@ -1,4 +1,6 @@
 .md-container {
+  font-weight: 400;
+
   & > * + * {
     @apply mt-[1.5em];
   }
