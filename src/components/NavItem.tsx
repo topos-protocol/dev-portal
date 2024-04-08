@@ -47,7 +47,7 @@ export const NavItem: React.FC<NavItemProps> = ({
             if (disabled) {
               event.stopPropagation();
             } else {
-              setNavExpanded(false);
+              // setNavExpanded(false);
             }
           },
         }}
@@ -88,6 +88,7 @@ export const NavItem: React.FC<NavItemProps> = ({
           !isExpanded && 'hidden'
         )}
         aria-hidden={!isExpanded}
+        onClick={(event) => event.stopPropagation()}
       >
         {navItem.content.map(
           (subNavItem: NavigationItemType, subNavItemIndex: number) => {
