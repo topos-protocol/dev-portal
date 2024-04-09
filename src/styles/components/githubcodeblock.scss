@@ -11,6 +11,12 @@
   margin-top: 2rem;
 }
 
+.dark {
+  .language {
+    @apply text-dark-bg;
+  }
+}
+
 .githubblock {
   @apply bg-ghcode-action-bg;
   border-radius: 0.5rem;
