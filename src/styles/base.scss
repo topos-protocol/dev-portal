@@ -12,6 +12,39 @@ body {
   }
 }
 
+.dark body {
+  @apply bg-dark-bg text-text-darkmode;
+}
+
+.dark #gatsby-focus-wrapper div header {
+  @apply bg-dark-bg border-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper div .custom-scroll {
+  @apply bg-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper div div aside {
+  @apply bg-dark-bg border-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper main section div span .gatsby-resp-image-wrapper .gatsby-resp-image-link img {
+  @apply shadow-imageBlock;
+}
+
+.dark #gatsby-focus-wrapper main h1,.dark #gatsby-focus-wrapper main h2,.dark #gatsby-focus-wrapper main h3,.dark #gatsby-focus-wrapper main h4,.dark #gatsby-focus-wrapper main h5,.dark #gatsby-focus-wrapper main h6 {
+  @apply text-text-darkmode;
+}
+
+.dark :not(pre) > code[class*=language-] {
+  @apply text-text-darkmode;
+  background-color: rgb(127 136 137 / 0.6);
+}
+
+.dark #gatsby-focus-wrapper main .accordion {
+  @apply text-dark-bg;
+}
+
 .custom-scroll::-webkit-scrollbar {
   @apply w-1.5;
 }

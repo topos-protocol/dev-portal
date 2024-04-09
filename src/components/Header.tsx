@@ -7,6 +7,7 @@ import { Logo } from './Logo';
 import config from '../../config';
 import { twMerge } from 'tailwind-merge';
 import { Search } from './Search';
+import { ModeToggle } from './ModeToggle';
 
 interface HeaderProps {
   navExpanded: boolean;
@@ -51,6 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
         <Search />
+        <ModeToggle />
         <button
           className="md:hidden"
           type="button"

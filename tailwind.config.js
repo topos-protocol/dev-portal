@@ -21,6 +21,7 @@ const light_clay = '#ffe3d9' // semi-official pallet
 const lighter_clay = '#fff0ea' // semi-official pallet
 
 module.exports = {
+  //darkMode: 'selector',
   content: [
     './src/pages/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
@@ -31,8 +32,11 @@ module.exports = {
       colors: {
         'light-bg': white, // Light mode background color
         'dark-bg': almost_black, // Dark mode background color
+        'medium-bg': light_grey,
         'text-reg': black, // Regular text color
         'title-reg': almost_black, // Regular title color for pages
+        'text-darkmode': cool_yellow,
+        'title-darkmode': cool_yellow,
         'light-text': '#b3b3b3',
         'light-border': '#ebebec',
         'light-bg': '#bbbdc1',
@@ -61,6 +65,9 @@ module.exports = {
       },
       screens: {
         'large-screen': '1536px',
+      },
+      boxShadow: {
+        imageBlock: `0 0 0 400px ${almost_black}`,
       },
     },
   },
