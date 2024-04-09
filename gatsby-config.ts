@@ -51,6 +51,7 @@ const config: GatsbyConfig = {
           {
             resolve: 'gatsby-remark-images',
             options: {
+              backgroundColor: 'transparent',
               linkImagesToOriginal: true,
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
