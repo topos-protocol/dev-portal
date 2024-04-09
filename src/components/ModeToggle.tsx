@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { FaCloudMoon } from "react-icons/fa";
+import { FaSun } from "react-icons/fa";
+import { FaComputer } from "react-icons/fa6";
 
 const modeLabel = (mode) => {
   switch (mode) {
@@ -52,13 +55,13 @@ export const ModeToggle: React.FC = () => {
     <div className="mode-toggle">
       <div className={`indicator indicator-pos-${mode}`}></div>
       <button className="mode-icon" onClick={() => setMode(0)}>
-        ☀️
+        <FaSun />
       </button>
       <button className="mode-icon" onClick={() => setMode(1)}>
-        🌙
+        <FaCloudMoon />
       </button>
       <button className="mode-icon" onClick={() => setMode(2)}>
-        🖥️
+        <FaComputer />
       </button>
     </div>
   );

@@ -28,3 +28,9 @@
     }
   }
 }
+
+.dark .highlightbox {
+  &.alert {
+    @apply bg-alert-bg text-alert-fg;
+  }
+}

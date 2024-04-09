@@ -22,7 +22,7 @@
   width: calc(
     33.333% - 2px
   ); /* Adjust width to fit inside the container with padding */
-  background-color: rgb(0 0 0 / 0.1); /* Indicator background */
+  background-color: rgb(0 0 0 / 0.2); /* Indicator background */
   border-radius: 15px; /* Rounded corners for the indicator */
   transition: left 0.3s ease; /* Smooth transition for moving indicator */
 }

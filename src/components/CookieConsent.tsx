@@ -31,7 +31,7 @@ const CookieConsent: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex flex-col items-center gap-4 border-t border-neutral-300 bg-light-border p-4 shadow-xl sm:flex-row sm:justify-between">
+    <div className="cookieconsent fixed inset-x-0 bottom-0 z-50 flex flex-col items-center gap-4 border-t border-neutral-300 bg-light-border p-4 shadow-xl sm:flex-row sm:justify-between">
       <p className="flex-1">
         We are using cookies, by using our website you agree to{' '}
         <Link to="/legal/privacy-policy.html">our Privacy Policy</Link>

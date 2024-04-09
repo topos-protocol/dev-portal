@@ -33,6 +33,7 @@ module.exports = {
         'light-bg': white, // Light mode background color
         'dark-bg': almost_black, // Dark mode background color
         'medium-bg': light_grey,
+        'neutral-bg': dark_grey,
         'text-reg': black, // Regular text color
         'title-reg': almost_black, // Regular title color for pages
         'text-darkmode': cool_yellow,
