@@ -63,6 +63,7 @@ module.exports = {
         'ghcode-action-bg': black,
         'ghcode-loading': clay,
         'ghcode-language-bg': white,
+        'ghcode-language-bg-darkmode': clay,
         'ghcode-button': dark_teal,
       },
       screens: {

@@ -12,8 +12,15 @@
 }
 
 .dark {
-  .language {
-    @apply text-dark-bg;
+  .githubblock {
+    .code {
+      @apply bg-neutral-bg;
+    }
+    .header {
+      .language {
+        @apply bg-ghcode-language-bg-darkmode text-dark-bg;
+      }
+    }
   }
 }
 
