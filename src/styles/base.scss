@@ -53,6 +53,18 @@ body {
   @apply bg-tip-bg-darkmode;
 }
 
+#gatsby-focus-wrapper .tabgroup .tablist div button:hover {
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s ease;
+}
+
+.dark #gatsby-focus-wrapper .tabgroup .tablist div button:hover {
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.5s ease;
+}
+
 .custom-scroll::-webkit-scrollbar {
   @apply w-1.5;
 }
