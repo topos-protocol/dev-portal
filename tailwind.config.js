@@ -43,13 +43,14 @@ module.exports = {
         'light-bg': '#bbbdc1',
         'action-reg': dark_teal,
         'button-text': white,
-        'highlight-light': light_salmon,
+        'highlight-light': salmon,
         'highlight-bg': lightest_teal, // Info highlight box background color
         'highlight-title': almost_black,
         'highlight-fg': almost_black, // Info highlight box foreground color
         'alert-bg': safety_yellow,
         'alert-fg': almost_black,
         'tip-bg': salmon,
+        'tip-bg-darkmode': clay,
         'tip-fg': almost_black,
         'secondary-bg': lighter_clay, // click-to-expand background and other misc backgrounds
         'icon-fill': dark_teal,

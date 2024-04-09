@@ -43,6 +43,14 @@ body {
 
 .dark #gatsby-focus-wrapper main .accordion {
   @apply text-dark-bg;
+
+  & button {
+    @apply bg-tip-bg-darkmode;
+  }
+}
+
+.dark #gatsby-focus-wrapper .card section, .dark #gatsby-focus-wrapper section.info {
+  @apply bg-tip-bg-darkmode;
 }
 
 .custom-scroll::-webkit-scrollbar {
