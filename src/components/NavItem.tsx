@@ -40,7 +40,7 @@ export const NavItem: React.FC<NavItemProps> = ({
       <Link
         {...{
           className: 'hover:text-action-reg max-md:block',
-          activeClassName: 'text-action-reg text-semibold',
+          activeClassName: 'nav-item-active',
           style: disabledStyle,
           to: navItem.path,
           onClick: (event) => {
@@ -58,7 +58,7 @@ export const NavItem: React.FC<NavItemProps> = ({
 
           return {
             className: props.isCurrent
-              ? 'text-action-reg text-semibold'
+              ? 'nav-item-active'
               : 'hover:text-action-reg',
           };
         }}

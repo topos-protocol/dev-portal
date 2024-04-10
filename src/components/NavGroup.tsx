@@ -59,7 +59,7 @@ export const NavGroup: React.FC<NavGroupProps> = React.memo(({
           <Link
             className="hover:text-action-reg"
             to={navGroupItem.path}
-            activeClassName="text-action-reg text-semibold"
+            activeClassName="nav-item-active"
             onClick={() => setNavExpanded(false)}
             getProps={(props) => {
               if (props.isCurrent && !isExpanded) {
@@ -68,7 +68,7 @@ export const NavGroup: React.FC<NavGroupProps> = React.memo(({
 
               return {
                 className: props.isCurrent
-                  ? 'text-action-reg text-semibold'
+                  ? 'nav-item-active'
                   : 'hover:text-action-reg',
               };
             }}
