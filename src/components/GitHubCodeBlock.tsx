@@ -269,9 +269,9 @@ export const GitHubCodeBlock: React.FC<
       {title && (
         <div className={twMerge('githubblock-title')}>{title}</div>)}
       <div className={twMerge('githubblock',title ? '' : 'no-title')}>
-        <div className={twMerge('header')}>
-          <div className={twMerge('language')}>{`${language}`}</div>
-          <div className={twMerge('spacer')}></div>
+        <div className={twMerge('githubblock-header')}>
+          <div className={twMerge('githubblock-language')}>{`${language}`}</div>
+          <div className={twMerge('githubblock-spacer')}></div>
           {nocopy != true && (
             <button
               onClick={() => {
@@ -285,12 +285,12 @@ export const GitHubCodeBlock: React.FC<
             </button>
           )}
         </div>
-        <div className={twMerge('code')}>
+        <div className={twMerge('githubblock-code')}>
           {code ? (
             <Highlight code={code} language={language} theme={themes.nightOwl}>
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre
-                  className={twMerge('code-wrapper', className, 'diff-highlight')}
+                  className={twMerge('githubblock-code-wrapper', className, 'diff-highlight')}
                   style={{
                     ...style,
                   }}
@@ -336,7 +336,7 @@ export const GitHubCodeBlock: React.FC<
               )}
             </Highlight>
           ) : (
-            <div className={twMerge('loading')}>
+            <div className={twMerge('githubblock-loading')}>
               Loading{' '}
               <a href={baseUrl} target="_blank">
                 {baseUrl}
@@ -345,7 +345,7 @@ export const GitHubCodeBlock: React.FC<
             </div>
           )}
         </div>
-        <div className={twMerge('url')}>
+        <div className={twMerge('githubblock-url')}>
           <a href={link || contentUrl} target={'_blank'}>
             {link || (path && contentUrl)}
           </a>
