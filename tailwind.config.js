@@ -36,8 +36,8 @@ module.exports = {
         'neutral-bg': dark_grey,
         'text-reg': black, // Regular text color
         'title-reg': almost_black, // Regular title color for pages
-        'text-darkmode': cool_yellow,
-        'title-darkmode': cool_yellow,
+        'text-darkmode': white, // Darkmode regular text color; it would be interesting to have a mechanism where text color could be determined at the page level, as there might be some pages where we want something to stand out by using the cool_yellow or the light_teal, instead.
+        'title-darkmode': white,
         'light-text': '#b3b3b3',
         'light-border': '#ebebec',
         'light-bg': '#bbbdc1',
