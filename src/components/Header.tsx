@@ -17,6 +17,7 @@ interface HeaderProps {
   tocEnabled: boolean;
 }
 
+/* TODO: Refactor this to have styling in stylesheets instead of so much being hardcoded in the component code. */
 export const Header: React.FC<HeaderProps> = ({
   navExpanded,
   setNavExpanded,
