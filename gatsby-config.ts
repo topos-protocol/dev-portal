@@ -57,7 +57,7 @@ const config: GatsbyConfig = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 1216,
-              quality: env === 'development' ? 10 : 80,
+              quality: env === 'development' ? 80 : 80,
             },
           },
           {
