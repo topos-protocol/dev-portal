@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 
 export const BannerImage: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="relative -z-10 order-first flex w-full flex-1 lg:order-last lg:w-auto [&>span]:block [&>span]:w-full">
+    <div className="bannerimage relative -z-10 order-first flex w-full flex-1 lg:order-last lg:w-auto [&>span]:block [&>span]:w-full">
       {children}
     </div>
   );
@@ -10,7 +10,7 @@ export const BannerImage: React.FC<PropsWithChildren> = ({ children }) => {
 
 export const BannerContent: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="md-container order-last max-large-screen:flex-1 lg:order-first large-screen:w-1/3 [&>.highlightbox]:bg-highlight-light [&>.highlightbox]:px-6 [&>.highlightbox]:text-neutral-700">
+    <div className="bannercontent md-container order-last max-large-screen:flex-1 lg:order-first large-screen:w-1/3 [&>.highlightbox]:bg-highlight-light [&>.highlightbox]:px-6 [&>.highlightbox]:text-neutral-700">
       {children}
     </div>
   );

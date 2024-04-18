@@ -27,8 +27,8 @@ export const TabGroup: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <TabGroupContext.Provider value={contextValue}>
-      <div className="rounded-xl border">
-        <div className="ml-0 flex list-none gap-1 border-b" role="tablist">
+      <div className="tabgroup rounded-xl border">
+        <div className="tablist ml-0 flex list-none gap-1 border-b" role="tablist">
           {React.Children.map(children, (child: any, index) => {
             const { title } = child.props;
             const isActive = activeTabIndex === index;

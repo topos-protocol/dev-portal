@@ -11,21 +11,34 @@
   margin-top: 2rem;
 }
 
+.dark {
+  .githubblock {
+    .githubblock-code {
+      @apply bg-neutral-bg;
+    }
+    .githubblock-header {
+      .githubblock-language {
+        @apply bg-ghcode-language-bg-darkmode text-dark-bg;
+      }
+    }
+  }
+}
+
 .githubblock {
-  @apply bg-code-top;
+  @apply bg-ghcode-action-bg;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   margin-top: 0;
   // padding-left: 1.5rem;
 
-  .header {
+  .githubblock-header {
     display: flex;
     position: relative;
     padding-left: 1.5rem;
     flex-wrap: wrap;
 
-    .language {
-      background-color: #ffffff;
+    .githubblock-language {
+      @apply bg-ghcode-language-bg;
       margin-right: 1rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -44,16 +57,17 @@
       }
     }
 
-    .spacer {
+    .githubblock-spacer {
       flex-grow: 1;
     }
 
-    .button {
+    .githubblock-button {
       margin-right: 1.5rem;
       margin-top: 0.5rem;
       margin-left: 1.0rem;
       padding: 8px 12px;
-      background-color: #00f5c426;
+      // background-color: #00f5c426;
+      @apply bg-ghcode-button;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -69,7 +83,7 @@
     }
   }
 
-  .url {
+  .githubblock-url {
     color: #9d9d9d;
     font-style: italic;
     display: flex;
@@ -88,13 +102,12 @@
     }
   }
 
-  .code {
-    // @apply bg-code-top;
-    @apply bg-neutral-500/10;
+  .githubblock-code {
+    @apply bg-dark-bg;
     overflow: hidden;
     border-radius: 0.5rem;
 
-    .code-wrapper {
+    .githubblock-code-wrapper {
       background-color: transparent;
       float: left;
       min-width: 100%;
@@ -106,9 +119,10 @@
     }
   }
 
-  .loading {
+  .githubblock-loading {
     margin: 1.5rem 0 1.5rem 1.5rem;
-    color: #bdbdbd;
+    @apply text-ghcode-loading;
+    // color: #bdbdbd;
   }
 }
 

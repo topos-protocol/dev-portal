@@ -1,5 +1,5 @@
 import { NavItem } from './NavItem';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { useCollapse } from 'react-collapsed';
 import config from '../../config';
 import { NavigationItemType } from '../interfaces/Config';
@@ -21,7 +21,7 @@ interface NavGroupProps {
   pageTransition: boolean;
 }
 
-export const NavGroup: React.FC<NavGroupProps> = ({
+export const NavGroup: React.FC<NavGroupProps> = React.memo(({
   navGroupItem,
   navGroupIndex,
   setNavExpanded,
@@ -29,6 +29,11 @@ export const NavGroup: React.FC<NavGroupProps> = ({
 }) => {
   const [isExpanded, setExpanded] = useState(false);
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
+  const toggleExpanded = useCallback(() => {
+    setExpanded((prevExpanded) => {
+      console.log(!prevExpanded);
+      return !prevExpanded});
+  }, []);
 
   // if (navGroupItem.path && !isExpanded) setExpanded(true);
 
@@ -37,7 +42,7 @@ export const NavGroup: React.FC<NavGroupProps> = ({
       className="flex flex-col gap-2"
       key={`navGroup${navGroupIndex}`}
       {...getToggleProps({
-        onClick: () => setExpanded((prevExpanded) => !prevExpanded),
+        onClick: toggleExpanded,
       })}
     >
       {navGroupItem.path ? (
@@ -54,16 +59,16 @@ export const NavGroup: React.FC<NavGroupProps> = ({
           <Link
             className="hover:text-action-reg"
             to={navGroupItem.path}
-            activeClassName="text-action-reg text-semibold"
+            activeClassName="nav-item-active"
             onClick={() => setNavExpanded(false)}
             getProps={(props) => {
               if (props.isCurrent && !isExpanded) {
-                setExpanded(true);
+                // setExpanded(true);
               }
 
               return {
                 className: props.isCurrent
-                  ? 'text-action-reg text-semibold'
+                  ? 'nav-item-active'
                   : 'hover:text-action-reg',
               };
             }}
@@ -86,7 +91,7 @@ export const NavGroup: React.FC<NavGroupProps> = ({
         </strong>
       )}
       {navGroupItem.content && (
-        <ul className={`flex flex-col gap-2`} {...getCollapseProps()}>
+        <ul onClick={(event) => event.stopPropagation()} className={`flex flex-col gap-2`} {...getCollapseProps()}>
           {navGroupItem.content.map(
             (navItem: NavigationItemType, navItemIndex: number) => (
               <NavItem
@@ -102,4 +107,4 @@ export const NavGroup: React.FC<NavGroupProps> = ({
       )}
     </li>
   );
-};
+});

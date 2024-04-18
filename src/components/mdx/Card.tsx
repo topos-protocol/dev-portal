@@ -14,7 +14,7 @@ export const Card: React.FC<PropsWithChildren<CardProps>> = ({
   to,
 }) => {
   return (
-    <Link to={to} className="discreet-link group relative block rounded-md">
+    <Link to={to} className="card discreet-link group relative block rounded-md">
       <HighlightBox
         className="relative h-full bg-highlight-light px-6 pr-10 text-neutral-700"
         title={title}

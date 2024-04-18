@@ -28,7 +28,7 @@ export const Accordion: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <AccordionContext.Provider value={contextValue}>
-      <div className="md-container" ref={ref}>
+      <div className="md-container accordion" ref={ref}>
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {
             return React.cloneElement(child);

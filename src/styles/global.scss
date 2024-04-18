@@ -7,6 +7,7 @@
 @import 'katex/dist/katex.min.css';
 @import './base';
 @import './md-container';
+@import './components/header';
 @import './components/tables';
 @import './components/highlights';
 @import './components/button';
@@ -16,5 +17,9 @@
 @import './components/image-carousel';
 @import './components/mermaid';
 @import './components/githubcodeblock';
+@import './components/modetoggle';
+@import './components/cookieconsent';
+@import './components/banner';
+@import './components/nav';
 
 @import './docsearch';

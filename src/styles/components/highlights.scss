@@ -13,7 +13,7 @@
   }
 
   &.alert {
-    @apply bg-alert-bg text-alert-fg;
+    @apply bg-alert-bg bg-opacity-30 text-alert-fg;
 
     .icon {
       @apply fill-alert-fg;
@@ -26,5 +26,11 @@
     .icon {
       @apply fill-tip-fg;
     }
+  }
+}
+
+.dark .highlightbox {
+  &.alert {
+    @apply bg-alert-bg text-alert-fg;
   }
 }

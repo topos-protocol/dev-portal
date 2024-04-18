@@ -1,6 +1,8 @@
 html,
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Helvetica Neue Lt Std', 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
   overscroll-behavior-y: none;
   overflow-x: hidden;
   @apply m-0 text-text-reg;
@@ -8,6 +10,63 @@ body {
   *:not(.DocSearch-Input) {
     @apply outline-none focus-visible:ring focus-visible:ring-action-reg focus-visible:ring-offset-2;
   }
+}
+
+.dark body {
+  @apply bg-dark-bg text-text-darkmode;
+}
+
+.dark #gatsby-focus-wrapper div header {
+  @apply bg-dark-bg border-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper div .custom-scroll {
+  @apply bg-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper div div aside {
+  @apply bg-dark-bg border-dark-bg;
+}
+
+.dark #gatsby-focus-wrapper main section div span .gatsby-resp-image-wrapper .gatsby-resp-image-link img {
+  @apply shadow-imageBlock;
+}
+
+.dark #gatsby-focus-wrapper main h1,.dark #gatsby-focus-wrapper main h2,.dark #gatsby-focus-wrapper main h3,.dark #gatsby-focus-wrapper main h4,.dark #gatsby-focus-wrapper main h5,.dark #gatsby-focus-wrapper main h6 {
+  @apply text-text-darkmode;
+}
+
+.dark :not(pre) > code[class*=language-] {
+  @apply text-text-darkmode;
+  background-color: rgb(127 136 137 / 0.6);
+}
+
+.dark #gatsby-focus-wrapper main .accordion {
+  @apply text-dark-bg;
+
+  & button {
+    @apply bg-tip-bg-darkmode;
+  }
+}
+
+.dark #gatsby-focus-wrapper .card section, .dark #gatsby-focus-wrapper section.info {
+  @apply bg-tip-bg-darkmode;
+}
+
+#gatsby-focus-wrapper .tabgroup .tablist div button:hover {
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s ease;
+}
+
+.dark #gatsby-focus-wrapper .tabgroup .tablist div button:hover {
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.5s ease;
+}
+
+.dark *, .dark::before, .dark::after {
+  @apply border-neutral-bg;
 }
 
 .custom-scroll::-webkit-scrollbar {

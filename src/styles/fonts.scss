@@ -21,6 +21,37 @@
   src: url('/fonts/roboto-mono.woff2') format('woff2');
 }
 
+@font-face {
+  descent-override: 0%;
+  font-display: swap;
+  font-family: Helvetica Neue LT Std;
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/HelveticaNeueLTStd-Bd.woff2) format('woff2');
+}
+@font-face {
+  descent-override: 0%;
+  font-display: swap;
+  font-family: Helvetica Neue LT Std;
+  font-style: italic;
+  font-weight: 700;
+  src: url(/fonts/HelveticaNeueLTStd-BdIt.woff2) format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: Helvetica Neue LT Std;
+  font-style: normal;
+  font-weight: 500;
+  src: url(/fonts/HelveticaNeueLTStd-Md.woff2) format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: Helvetica Neue LT Std;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/HelveticaNeueLTStd-Roman.woff2) format('woff2');
+}
+
 h1,
 h2 h3,
 h4,

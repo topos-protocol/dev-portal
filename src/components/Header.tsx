@@ -7,6 +7,7 @@ import { Logo } from './Logo';
 import config from '../../config';
 import { twMerge } from 'tailwind-merge';
 import { Search } from './Search';
+import { ModeToggle } from './ModeToggle';
 
 interface HeaderProps {
   navExpanded: boolean;
@@ -16,6 +17,7 @@ interface HeaderProps {
   tocEnabled: boolean;
 }
 
+/* TODO: Refactor this to have styling in stylesheets instead of so much being hardcoded in the component code. */
 export const Header: React.FC<HeaderProps> = ({
   navExpanded,
   setNavExpanded,
@@ -24,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   tocEnabled,
 }) => {
   return (
-    <header className="fixed left-0 right-0 top-0 z-10 border-b bg-white">
+    <header className="header">
       <div className="mx-auto flex h-[80px] max-w-[1920px] items-center justify-between gap-4 px-4 py-6 font-semibold leading-none text-neutral-500 md:px-8">
         <div className="flex flex-1 items-center justify-between">
           <Link
@@ -51,6 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
         <Search />
+        <ModeToggle />
         <button
           className="md:hidden"
           type="button"
