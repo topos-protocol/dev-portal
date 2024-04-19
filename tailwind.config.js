@@ -60,6 +60,7 @@ module.exports = {
         'button-hover': dark_teal, // color of a button mouseover
         'button-active': dark_teal,
         'error-bg': '#f6bf3d',
+        'ghcode-black-bg': black,
         'ghcode-action-bg': black,
         'ghcode-loading': clay,
         'ghcode-language-bg': white,
