@@ -31,7 +31,7 @@ const createPages = async ({ actions, graphql }: CreatePagesArgs) => {
       const isProtectedRoute = isProtectedMdxPath(
         node.internal.contentFilePath,
       );
-      if (!isProtectedRoute) {
+//      if (!isProtectedRoute) { // removed this check to make hot reload triggers work correctly - to be updated with a better switch
         createPage({
           path: path === config.indexPath ? '/' : path,
           component: `${layout}?__contentFilePath=${node.internal.contentFilePath}`,
@@ -40,7 +40,7 @@ const createPages = async ({ actions, graphql }: CreatePagesArgs) => {
             slug: path,
           },
         });
-      }
+//      }
     });
   });
 };
